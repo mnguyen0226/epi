@@ -109,10 +109,102 @@ def string_to_int(s: str) -> int:
     # Space Complexity: O(1) due to not using any extra space
 
 
+######################################
+# Review 3/26/2022
+def char_to_int_converter(c):
+    if c == "0" or c == "-" or c == "+":
+        return 0
+    elif c == "1":
+        return 1
+    elif c == "2":
+        return 2
+    elif c == "3":
+        return 3
+    elif c == "4":
+        return 4
+    elif c == "5":
+        return 5
+    elif c == "6":
+        return 6
+    elif c == "7":
+        return 7
+    elif c == "8":
+        return 8
+    elif c == "9":
+        return 9
+
+
+def digit_to_char_converter(i):
+    if i == 0:
+        return "0"
+    elif i == 1:
+        return "1"
+    elif i == 2:
+        return "2"
+    elif i == 3:
+        return "3"
+    elif i == 4:
+        return "4"
+    elif i == 5:
+        return "5"
+    elif i == 6:
+        return "6"
+    elif i == 7:
+        return "7"
+    elif i == 8:
+        return "8"
+    elif i == 9:
+        return "9"
+
+
+def string_to_int_2(s: str) -> int:
+    res = 0
+    flag = 0
+
+    # Go through each character in a string
+    for i in range(len(s)):
+        if s[i] == "-":
+            flag = 1
+        res *= 10
+        digit = char_to_int_converter(s[i])
+        res += digit
+    if flag == 1:
+        res *= -1
+    return res
+
+
+def int_to_string_2(x: int) -> str:
+    res = ""
+    flag = 0
+    if x < 0:
+        flag = 1
+
+    # Edge Cases
+    if x == 0:
+        return "0"
+
+    # Eliminate negative
+    x = abs(x)
+
+    # Go through each number of int
+    while x:
+        last_digit = x % 10
+        res += digit_to_char_converter(last_digit)
+        x //= 10  # floor division, get rid of the last digit of number
+
+    if flag == 1:
+        res += "-"
+
+    # Reverse the result string
+    res = res[::-1]
+
+    return res
+
+
 def wrapper(x, s):
-    if int(int_to_string(x)) != x:
+    if int(int_to_string_2(x)) != x:
         raise TestFailure("Int to string conversion failed")
-    if string_to_int(s) != x:
+    if string_to_int_2(s) != x:
         raise TestFailure("String to int conversion failed")
 
 
