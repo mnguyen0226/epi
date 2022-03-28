@@ -32,7 +32,27 @@ def swap_bit_review(x, i, j):
     # Space Complexity: O(1)
 
 
+# 3/27/2022
+def swap_bit_review_2(x, i, j):
+    # Get the digit at position i and j
+    digit_i = x >> i
+    digit_j = x >> j
+    if digit_i == digit_j:
+        return x
+    else:
+        mask_i = 1 << i
+        mask_j = 1 << j
+        x = x ^ mask_i
+        x = x ^ mask_j
+        return x
+
+    # Time Complexity: O(1): single number
+    # Space Complexity: O(1): Not using any extra space
+
+
 if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("swap_bits.py", "swap_bits.tsv", swap_bit_review)
+        generic_test.generic_test_main(
+            "swap_bits.py", "swap_bits.tsv", swap_bit_review_2
+        )
     )

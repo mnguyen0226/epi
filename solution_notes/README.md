@@ -12,7 +12,7 @@
 - *5.3: Note that python has the max memory size for integer, thus, we will to use 2 for loop
 
 ### 3. Strings
-- *6.1: Interconvert string and integer
+- 6.1: Interconvert string and integer
 
 ### 4. Linked Lists
 
