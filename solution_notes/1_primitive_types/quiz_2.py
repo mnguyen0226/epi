@@ -3,6 +3,7 @@
 # Time complexity = O(n)
 # Space complexity = O(1)
 
+
 def parity_check(num):
     # Count number of 1 in num
     num_bits = 0

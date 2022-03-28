@@ -3,7 +3,7 @@
 
 ### 1. Primitive Types
 - 4.1: XOR property: association, the XOR of the group of bits is its parity
-- *4.2: the expression r & (x - 1) clears the lowest set bit in x, and x & -(x - 1) extracts the lowest set bit of r
+- 4.2: the expression r & (x - 1) clears the lowest set bit in x, and x & -(x - 1) extracts the lowest set bit of r
 - 4.3: shift the result to the left, get the last bit of the input, then or the 0 with the last bit
 
 ### 2. Arrays

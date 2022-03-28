@@ -25,7 +25,10 @@ def sort_even_2(a):
         if a[even_idx] % 2 == 0:
             even_idx += 1
         else:
-            a[even_idx], a[odd_idx] = a[odd_idx], a[even_idx] # this mean run two operation at the same time
+            a[even_idx], a[odd_idx] = (
+                a[odd_idx],
+                a[even_idx],
+            )  # this mean run two operation at the same time
             odd_idx -= 1
     return a
 
