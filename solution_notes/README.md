@@ -13,6 +13,7 @@
 
 ### 3. Strings
 - 6.1: Interconvert string and integer
+- *6.2: Base Conversion: Hvae a helper function that convert string to digit and vice versa. Convert the string base b1 to decimal by multiplication and addition. Convert the decimal to string base b2 by mod and floor division. 
 
 ### 4. Linked Lists
 
