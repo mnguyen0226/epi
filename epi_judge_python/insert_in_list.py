@@ -4,11 +4,12 @@ from list_node import ListNode
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-
-# Insert new_node after node.
+# 3/27/2022
+# Insert new_node after node and return the original node
 def insert_after(node: ListNode, new_node: ListNode) -> None:
-    # TODO - you fill in here.
-    return
+    new_node.next = node.next
+    node.next = new_node
+    return node
 
 
 @enable_executor_hook

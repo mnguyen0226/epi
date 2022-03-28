@@ -1,10 +1,13 @@
 from list_node import ListNode
 from test_framework import generic_test
 
-
+# 3/27/2022
+# Giving a linked list head and the key, return the list node that contains the key
 def search_list(L: ListNode, key: int) -> ListNode:
-    # TODO - you fill in here.
-    return ListNode()
+    # while the ListNode() is not null and we have not find the node that stores the key yet
+    while L and L.data != key:
+        L = L.next
+    return L
 
 
 def search_list_wrapper(L, key):

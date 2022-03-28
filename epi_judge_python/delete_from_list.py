@@ -5,10 +5,11 @@ from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
 
-# Delete the node past this one. Assume node is not a tail.
+# 3/27/2022
+# Delete the node past this one. Assume node is not a tail. <<<< Delete a node next to the input node
 def delete_after(node: ListNode) -> None:
-    # TODO - you fill in here.
-    return
+    node.next = node.next.next
+    return node
 
 
 @enable_executor_hook
