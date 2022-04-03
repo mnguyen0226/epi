@@ -4,7 +4,7 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
-
+# 4/3/2022 - Easy
 def merge_two_sorted_lists(
     L1: Optional[ListNode], L2: Optional[ListNode]
 ) -> Optional[ListNode]:

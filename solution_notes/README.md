@@ -17,7 +17,7 @@
 - *6.3: spreadsheet_encoding: Get the unicode of a letter then minus 64 to get 1, 2, 3,...
 
 ### 4. Linked Lists
-
+- *7.1: merge_sorted_lists: create a dummy_node then append accordingly, remember to move the tail node.
 
 ### 5. Stacks and Queues
 
