@@ -18,6 +18,8 @@
 
 ### 4. Linked Lists
 - *7.1: merge_sorted_lists: create a dummy_node then append accordingly, remember to move the tail node.
+- *7.2: reverse_sublist: Move to the node prior to start
+  - The algorithm for swapping sublist is that choose the start node as sublist_iter. You are trying to push the sublist iter to the end while move the temp (sublist_iter.next) to the front of the sublist.
 
 ### 5. Stacks and Queues
 
