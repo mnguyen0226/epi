@@ -7,18 +7,18 @@ def plus_one(A: List[int]) -> List[int]:
     # Check empty
     if len(A) == 0:
         return A
-    
+
     # Traverse through the array backwards
     for i in reversed(range(len(A))):
-        
+
         # if there is a 9: if last position or not last position
         if A[i] == 9:
             if i == 0:
-                A[i] = 0 
+                A[i] = 0
                 A.insert(0, 1)
                 break
             A[i] = 0
-            
+
         # if the current number if not 9, then we just increment the value by 1
         else:
             A[i] += 1

@@ -32,6 +32,7 @@ def letter_to_int(l):
         return 15
 
 
+# 3/16/2022
 def convert_base(num_as_string: str, b1: int, b2: int) -> str:
     # Case 1: when the string is 0 then the return string is also 0
     if num_as_string == "0":

@@ -8,11 +8,11 @@ from test_framework.test_utils import enable_executor_hook
 
 # 5/13/2022
 def even_odd(A: List[int]) -> None:
-    even, odd = 0, len(A)-1
+    even, odd = 0, len(A) - 1
     while even < odd:
-        if A[even] % 2 == 0: 
+        if A[even] % 2 == 0:
             even += 1
-        else: # swap
+        else:  # swap
             A[even], A[odd] = A[odd], A[even]
             odd -= 1
     return

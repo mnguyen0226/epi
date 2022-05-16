@@ -5,8 +5,10 @@ from test_framework import generic_test
 
 # 4/3/2022 - Medium
 def reverse_sublist(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
-    dummy_head = sublist_head = ListNode(0, L) # you are making a copy of the linked list
-    
+    dummy_head = sublist_head = ListNode(
+        0, L
+    )  # you are making a copy of the linked list
+
     # Traverse till the position
     for _ in range(1, start):
         sublist_head = sublist_head.next

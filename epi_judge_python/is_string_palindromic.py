@@ -8,15 +8,14 @@ def is_palindromic(s: str) -> bool:
 
     # W2: check whether the first half of the string equal to the second half of the string
     return all(s[i] == s[~i] for i in range(len(s) // 2))
-    
+
     # T: O(n)
     # S: O(1)
-    
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "is_string_palindromic.py",
-            "is_string_palindromic.tsv",
-            is_palindromic,
+            "is_string_palindromic.py", "is_string_palindromic.tsv", is_palindromic,
         )
     )

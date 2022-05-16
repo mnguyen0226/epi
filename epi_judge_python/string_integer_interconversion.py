@@ -1,6 +1,6 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
-import string 
+import string
 
 # 3/22/2022
 # Helper function convert string to int
@@ -54,65 +54,66 @@ def digit_to_char(d):  # character
 
 
 # 3/21/2022
-def int_to_string(x: int) -> str: 
+def int_to_string(x: int) -> str:
     # base case, the while loop won't work if we got "while 0"
     if x == 0:
         return "0"
-    
+
     # check flag
     flag_posi = True
     if x < 0:
         flag_posi = False
-    
+
     new_string = ""
-    
+
     # get rid of sign
     x = abs(x)
-    
-    # keep + the last character to the new string 
+
+    # keep + the last character to the new string
     while x:
         remainder = x % 10
-        x = x // 10 # get rid of remainder, floor divider
-        new_string += chr(ord('0') + remainder) 
-    
-    
+        x = x // 10  # get rid of remainder, floor divider
+        new_string += chr(ord("0") + remainder)
+
     if flag_posi == False:
-        new_string += '-'
-        
-    # reverse it 
+        new_string += "-"
+
+    # reverse it
     new_string = new_string[::-1]
-    
+
     return new_string
 
     # T: O(n)
     # S: O(1)
-    
-def string_to_int(s: str) -> int: # no base case for string to int
+
+
+def string_to_int(s: str) -> int:  # no base case for string to int
     new_int = 0
     i = 0
 
     # Check flag
     flag_posi = True
-    if s[0] == '-':
+    if s[0] == "-":
         flag_posi = False
-    
+
     # Avoid - or + sign
-    if s[i] == '-' or s[i] == '+':
+    if s[i] == "-" or s[i] == "+":
         i = 1
-    
+
     for i in range(i, len(s)):
-        new_int = (new_int + string.digits.index(s[i])) 
+        new_int = new_int + string.digits.index(s[i])
         if i == len(s) - 1:
             break
         new_int *= 10
-    
+
     if flag_posi == False:
         new_int *= -1
-        
+
     return new_int
 
     # T: O(n)
     # S: O(1)
+
 
 def wrapper(x, s):
     if int(int_to_string(x)) != x:
