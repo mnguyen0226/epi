@@ -1,9 +1,10 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
+import string 
 
 # 3/22/2022
 # Helper function convert string to int
-def digit_string_to_int(c):  # character
+def char_to_digit(c):  # character
     if c == "0":
         return 0
     elif c == "1":
@@ -29,7 +30,7 @@ def digit_string_to_int(c):  # character
 
 
 # Helper function convert int to string
-def digit_int_to_string(d):  # character
+def digit_to_char(d):  # character
     if d == 0:
         return "0"
     elif d == 1:
@@ -53,158 +54,70 @@ def digit_int_to_string(d):  # character
 
 
 # 3/21/2022
-def int_to_string(x: int) -> str:  # does not have to worry about the sign of +
-    # Set Flag and result
-    flag = ""
-    result = ""
+def int_to_string(x: int) -> str: 
+    # base case, the while loop won't work if we got "while 0"
     if x == 0:
         return "0"
+    
+    # check flag
+    flag_posi = True
     if x < 0:
-        flag = "-"
-
-    # Go through each number, extract and concat to number, then delete it from int
+        flag_posi = False
+    
+    new_string = ""
+    
+    # get rid of sign
     x = abs(x)
+    
+    # keep + the last character to the new string 
     while x:
-        # extract the last digit, aka remainder
-        last_digit = x % 10
+        remainder = x % 10
+        x = x // 10 # get rid of remainder, floor divider
+        new_string += chr(ord('0') + remainder) 
+    
+    
+    if flag_posi == False:
+        new_string += '-'
+        
+    # reverse it 
+    new_string = new_string[::-1]
+    
+    return new_string
 
-        # append the converted digit
-        result += digit_int_to_string(last_digit)
+    # T: O(n)
+    # S: O(1)
+    
+def string_to_int(s: str) -> int: # no base case for string to int
+    new_int = 0
+    i = 0
 
-        # delete last digit
-        x //= 10
+    # Check flag
+    flag_posi = True
+    if s[0] == '-':
+        flag_posi = False
+    
+    # Avoid - or + sign
+    if s[i] == '-' or s[i] == '+':
+        i = 1
+    
+    for i in range(i, len(s)):
+        new_int = (new_int + string.digits.index(s[i])) 
+        if i == len(s) - 1:
+            break
+        new_int *= 10
+    
+    if flag_posi == False:
+        new_int *= -1
+        
+    return new_int
 
-    # concat flag
-    result += flag
-
-    # reverse string
-    result = result[::-1]
-
-    return result
-
-    # Time Complexity: O(n) due to while loop
-    # Space Complexity: O(1) due to not using any extra space
-
-
-def string_to_int(s: str) -> int:
-    # Set flag
-    flag = 0
-    result = 0
-
-    if s[0] == "+":
-        flag = 1
-    elif s[0] == "-":
-        flag = -1
-    else:  # just number
-        flag = 1
-
-    # Go through each number with for loop, add that number and shift and multiply by 10
-    for i in range(0, len(s)):
-        result *= 10
-        result += digit_string_to_int(s[i])
-
-    return flag * result
-
-    # Time Complexity: O(n) due to while loop
-    # Space Complexity: O(1) due to not using any extra space
-
-
-######################################
-# Review 3/26/2022
-def char_to_int_converter(c):
-    if c == "0" or c == "-" or c == "+":
-        return 0
-    elif c == "1":
-        return 1
-    elif c == "2":
-        return 2
-    elif c == "3":
-        return 3
-    elif c == "4":
-        return 4
-    elif c == "5":
-        return 5
-    elif c == "6":
-        return 6
-    elif c == "7":
-        return 7
-    elif c == "8":
-        return 8
-    elif c == "9":
-        return 9
-
-
-def digit_to_char_converter(i):
-    if i == 0:
-        return "0"
-    elif i == 1:
-        return "1"
-    elif i == 2:
-        return "2"
-    elif i == 3:
-        return "3"
-    elif i == 4:
-        return "4"
-    elif i == 5:
-        return "5"
-    elif i == 6:
-        return "6"
-    elif i == 7:
-        return "7"
-    elif i == 8:
-        return "8"
-    elif i == 9:
-        return "9"
-
-
-def string_to_int_2(s: str) -> int:
-    res = 0
-    flag = 0
-
-    # Go through each character in a string
-    for i in range(len(s)):
-        if s[i] == "-":
-            flag = 1
-        res *= 10
-        digit = char_to_int_converter(s[i])
-        res += digit
-    if flag == 1:
-        res *= -1
-    return res
-
-
-def int_to_string_2(x: int) -> str:
-    res = ""
-    flag = 0
-    if x < 0:
-        flag = 1
-
-    # Edge Cases
-    if x == 0:
-        return "0"
-
-    # Eliminate negative
-    x = abs(x)
-
-    # Go through each number of int
-    while x:
-        last_digit = x % 10
-        res += digit_to_char_converter(last_digit)
-        x //= 10  # floor division, get rid of the last digit of number
-
-    if flag == 1:
-        res += "-"
-
-    # Reverse the result string
-    res = res[::-1]
-
-    return res
-
+    # T: O(n)
+    # S: O(1)
 
 def wrapper(x, s):
-    if int(int_to_string_2(x)) != x:
+    if int(int_to_string(x)) != x:
         raise TestFailure("Int to string conversion failed")
-    if string_to_int_2(s) != x:
+    if string_to_int(s) != x:
         raise TestFailure("String to int conversion failed")
 
 
