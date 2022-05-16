@@ -2,23 +2,31 @@ from typing import List
 
 from test_framework import generic_test
 
-
+# 5/15/2022
 def plus_one(A: List[int]) -> List[int]:
-    A[-1] += 1
-    for i in reversed(range(1, len(A))):  # trace till the second to last number
-        if A[i] != 10:
+    # Check empty
+    if len(A) == 0:
+        return A
+    
+    # Traverse through the array backwards
+    for i in reversed(range(len(A))):
+        
+        # if there is a 9: if last position or not last position
+        if A[i] == 9:
+            if i == 0:
+                A[i] = 0 
+                A.insert(0, 1)
+                break
+            A[i] = 0
+            
+        # if the current number if not 9, then we just increment the value by 1
+        else:
+            A[i] += 1
             break
-        A[i] = 0
-        A[i - 1] += 1  # next number in reverse
-
-    if A[0] == 10:
-        A[0] = 1
-        A.append(0)
-
     return A
 
-    # Time Complexity: O(n)
-    # Space Complexity: O(1)
+    # T: O(n) because of using for loop
+    # S: O(1)
 
 
 if __name__ == "__main__":
