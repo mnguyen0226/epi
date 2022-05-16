@@ -6,9 +6,15 @@ from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
-
+# 5/13/2022
 def even_odd(A: List[int]) -> None:
-    # TODO - you fill in here.
+    even, odd = 0, len(A)-1
+    while even < odd:
+        if A[even] % 2 == 0: 
+            even += 1
+        else: # swap
+            A[even], A[odd] = A[odd], A[even]
+            odd -= 1
     return
 
 

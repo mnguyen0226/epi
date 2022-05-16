@@ -7,49 +7,45 @@ from test_framework.test_utils import enable_executor_hook
 
 RED, WHITE, BLUE = range(3)
 
-# 3/14/2022
-# Solution 1: Go through the
+# 5/13/2022
 def dutch_flag_partition(pivot_index: int, A: List[int]) -> None:
-    left_idx = 0
-    right_idx = len(A) - 1
-    pivot_value = A[pivot_index]
-
-    # Gather all the smaller pivot value to the right
-    for i in range(len(A)):
-        if A[i] < pivot_value:
-            A[left_idx], A[i] = A[i], A[left_idx]
-            left_idx += 1
-
-    # Gather all the larger pivot value to the left
-    for i in reversed(range(len(A))):
-        if A[i] > pivot_value:
-            A[right_idx], A[i] = A[i], A[right_idx]
-            right_idx -= 1
-
-    return A
-
-    # Time Complexity: O(n)
-    # Space Complexity: O(1) since we don't use any additional storage ds
-
-
-# 3/19/2022
-def dutch_flag_partition_practice_1(pivot_index: int, A: List[int]) -> None:
     pivot = A[pivot_index]
+    
     smaller = 0
-    larger = len(A) - 1
+    
     for i in range(len(A)):
         if A[i] < pivot:
             A[i], A[smaller] = A[smaller], A[i]
             smaller += 1
-    for i in reversed(range(len(A))):
-        if A[i] > pivot:
-            A[i], A[larger] = A[larger], A[i]
+    
+    larger = len(A) - 1
+    
+    for j in reversed(range(len(A))):
+        if A[j] > pivot:
+            A[j], A[larger] = A[larger], A[j]
             larger -= 1
-    return A
+    return
 
-    # Time Complexity: O(n)
-    # Space Complexity: O(1)
+    # T: O(n)
+    # S: O(1)
 
+# 3//15/2022
+def dutch_flag_partition_1(pivot_index: int, A: List[int]) -> None:
+    pivot_value = A[pivot_index]
+    min, max = 0, len(A) - 1
+    
+    # first pass, shift all values less than pivot to the left 
+    for i in range(len(A)):
+        if A[i] < pivot_value:
+            A[min], A[i] = A[i], A[min]
+            min += 1
+    
+    # second pass, shift all values greater than pivot to the right
+    for j in reversed(range(len(A))):
+        if A[j] > pivot_value:
+            A[max], A[j] = A[j], A[max]
+            max -= 1
+    return
 
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):
@@ -58,7 +54,7 @@ def dutch_flag_partition_wrapper(executor, A, pivot_idx):
         count[x] += 1
     pivot = A[pivot_idx]
 
-    executor.run(functools.partial(dutch_flag_partition_practice_1, pivot_idx, A))
+    executor.run(functools.partial(dutch_flag_partition_1, pivot_idx, A))
 
     i = 0
     while i < len(A) and A[i] < pivot:
