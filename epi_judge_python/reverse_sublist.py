@@ -3,28 +3,31 @@ from typing import Optional
 from list_node import ListNode
 from test_framework import generic_test
 
-# 4/3/2022 - Medium
+# 5/16/2022
 def reverse_sublist(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
-    dummy_head = sublist_head = ListNode(
-        0, L
-    )  # you are making a copy of the linked list
+    # get the head node of L
+    dummy_head = sublist_head = ListNode(0, L)
 
-    # Traverse till the position
+    # traverse to prior sublist head
     for _ in range(1, start):
         sublist_head = sublist_head.next
 
-    # Reverse sublist
+    # get the static iterator pointer
     sublist_iter = sublist_head.next
+
+    # reverse linked list and keep count
     for _ in range(finish - start):
         temp = sublist_iter.next
-        sublist_iter.next = temp.next
-        temp.next = sublist_head.next
-        sublist_head.next = temp
+        sublist_iter.next, temp.next, sublist_head.next = (
+            temp.next,
+            sublist_head.next,
+            temp,
+        )
 
     return dummy_head.next
 
-    # Time Complexity: O(n) due to traversal.
-    # Space Complexity: O(1) since we are reusing the node.
+    # T: O(n)
+    # S: O(1)
 
 
 if __name__ == "__main__":
