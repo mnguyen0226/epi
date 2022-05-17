@@ -25,11 +25,7 @@ def merge_two_sorted_lists(
             dummy_head = dummy_head.next
 
     # concatenate if there is still value left
-    if temp_L1:
-        dummy_head.next = temp_L1
-
-    if temp_L2:
-        dummy_head.next = temp_L2
+    dummy_head.next = temp_L1 or temp_L2
 
     # skip the first node
     return new_list.next
