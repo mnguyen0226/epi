@@ -1,35 +1,41 @@
-from multiprocessing import dummy
 from typing import Optional
 
 from list_node import ListNode
 from test_framework import generic_test
 
-# 4/3/2022 - Easy
+# 5/16/2022
 def merge_two_sorted_lists(
     L1: Optional[ListNode], L2: Optional[ListNode]
 ) -> Optional[ListNode]:
+    new_list = ListNode()  # create empty list with a node 0
+    dummy_head = new_list  # create dummy_head for traversal
 
-    # Creates a dummy head
-    dummy_head = tail = ListNode()
+    temp_L1 = L1  # get the first temp head node for traversal
+    temp_L2 = L2  # get the second temp head node for traversal
 
-    # Traverse element wise and append to the tail
-    while L1 and L2:
-        if L1.data <= L2.data:
-            tail.next = L1
-            L1 = L1.next
+    # we traverse and concatenate list altering
+    while temp_L1 and temp_L2:
+        if temp_L1.data < temp_L2.data:
+            dummy_head.next = temp_L1
+            temp_L1 = temp_L1.next
+            dummy_head = dummy_head.next
         else:
-            tail.next = L2
-            L2 = L2.next
+            dummy_head.next = temp_L2
+            temp_L2 = temp_L2.next
+            dummy_head = dummy_head.next
 
-        # make sure to move the tail
-        tail = tail.next
+    # concatenate if there is still value left
+    if temp_L1:
+        dummy_head.next = temp_L1
 
-    # Append the rest of the linked list to the dummy list
-    tail.next = L1 or L2
+    if temp_L2:
+        dummy_head.next = temp_L2
 
-    return dummy_head.next  # why? because of the empy node
-    # Time Complexity: O(n+m) since traverse through nodes worst case
-    # Space Complexity: O(1) since we reused all the node
+    # skip the first node
+    return new_list.next
+
+    # T: O(n) for worst case that 1 list has the same length and has 12345.. altering
+    # S: O(n) because we use an additional head node
 
 
 if __name__ == "__main__":
