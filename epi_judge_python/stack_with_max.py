@@ -1,23 +1,44 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
-
+# 5/17/2022
 class Stack:
+    def __init__(self):
+        self.s = []
+
     def empty(self) -> bool:
-        # TODO - you fill in here.
-        return True
+        # check the length
+        return len(self.s) == 0
+
+        # T: O(1)
+        # S: O(1)
 
     def max(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        max = self.s[0]
+        for i in range(len(self.s)):
+            if self.s[i] > max:
+                max = self.s[i]
+        return max
+
+        # T: O(n)
+        # S: O(1)
 
     def pop(self) -> int:
-        # TODO - you fill in here.
-        return 0
+        last_val = self.s[-1]
+
+        # slicing
+        self.s = self.s[:-1]
+        return last_val
+
+        # T: O(1)
+        # S: O(1)
 
     def push(self, x: int) -> None:
-        # TODO - you fill in here.
+        self.s.append(x)
         return
+
+        # T: O(1)
+        # S: O(1)
 
 
 def stack_tester(ops):
