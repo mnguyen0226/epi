@@ -29,9 +29,40 @@ def plus_one(A: List[int]) -> List[int]:
     # S: O(1)
 
 
+def plus_one2(A: List[int]) -> List[int]:
+    # if the last number is not 9, then increment by 1 and return
+    if A[-1] != 9:
+        A[-1] += 1
+        return A
+
+    # if the last number is 9
+    for i in reversed(range(len(A))):
+        A[i] += 1
+
+        # after adding if curr index is not first index
+        if i != 0:
+            # note that we are not guarantee to be 10, just the last number
+            if A[i] == 10:
+                A[i] = 0  # and continue
+            else:
+                break  # we done
+        else:  # after adding if the curr index is the first index
+            # note that we are not guarantee to be 10, just the last number
+            if A[i] == 10:
+                A[i] = 0
+                A.insert(0, 1)  # positiion, value
+            else:
+                break  # we done
+
+    return A
+
+    # T: O(n) because we iterate through all elements in the array
+    # S: O(1) because we did not use any additional ds for storing data
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one
+            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one2
         )
     )
