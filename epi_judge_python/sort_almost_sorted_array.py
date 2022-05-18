@@ -2,7 +2,8 @@ from typing import Iterator, List
 
 from test_framework import generic_test
 
-
+# 5/18/2022
+# Using the min-heap
 def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int]:
     # TODO - you fill in here.
     return []
