@@ -1,3 +1,4 @@
+from math import remainder
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 import string
@@ -115,10 +116,69 @@ def string_to_int(s: str) -> int:  # no base case for string to int
     # S: O(1)
 
 
+# 5/21/2022
+def int_to_string2(x: int) -> str:
+    # check for 0 because while can't deal with it
+    if x == 0:
+        return '0'
+    
+    is_neg = False
+    if x < 0:
+        is_neg = True
+
+    # get absolute
+    x = abs(x)
+    s = ""
+
+    while x:
+        remainder = x % 10
+        remainder = chr(ord('0') + remainder)  # convert int to char
+        x = x // 10  # floor div
+        s = s + remainder
+
+    if is_neg:
+        s = s + "-"
+
+    return s[::-1]
+
+
+def string_to_int2(s: str) -> int:
+    if s is None:
+        return None
+
+    i = 0
+    x = 0
+    
+    is_neg = False
+    if s[0] == "-":
+        i = 1
+        is_neg = True
+    elif s[0] == "+":
+        i = 1
+
+    for j in range(i, len(s)):
+        num = string.digits.index(s[j])
+        x = x * 10
+        x += num
+
+    if is_neg:
+        x = -x
+
+    return x
+
+    # T: O(n)
+    # S: O(1)
+
+# def int_to_string(x: int) -> str:
+#     return None
+# def string_to_int(s: str) -> int:
+#     return 0
+
+
 def wrapper(x, s):
-    if int(int_to_string(x)) != x:
+    if int(int_to_string2(x)) != x:
         raise TestFailure("Int to string conversion failed")
-    if string_to_int(s) != x:
+    if string_to_int2(s) != x:
         raise TestFailure("String to int conversion failed")
 
 

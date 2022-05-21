@@ -20,6 +20,7 @@ def is_palindromic2(s: str) -> bool:
     # T: O(n) if we consider going through each character in string but O(1) for doing 1 string
     # S: O(1) since we did not use any ds for storage
 
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
