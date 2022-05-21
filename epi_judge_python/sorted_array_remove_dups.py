@@ -31,9 +31,25 @@ def delete_duplicates(A: List[int]) -> int:
     # S: O(1) because of not using any additional data structure
 
 
+# 5/21/2/2022
+def delete_duplicates2(A: List[int]) -> int:
+    if len(A) < 2:
+        return len(A)
+
+    p = 0
+    for i in range(len(A)):
+        if A[i] != A[p]:
+            p += 1
+            A[p] = A[i]
+        else:
+            continue
+
+    return p + 1
+
+
 @enable_executor_hook
 def delete_duplicates_wrapper(executor, A):
-    idx = executor.run(functools.partial(delete_duplicates, A))
+    idx = executor.run(functools.partial(delete_duplicates2, A))
     return A[:idx]
 
 
