@@ -34,9 +34,39 @@ def merge_two_sorted_lists(
     # S: O(n) because we use an additional head node
 
 
+def merge_two_sorted_lists2(
+    L1: Optional[ListNode], L2: Optional[ListNode]
+) -> Optional[ListNode]:
+
+    dummy_head = tail = ListNode(0)
+
+    L1_tail = L1
+    L2_tail = L2
+
+    while L1_tail and L2_tail:
+        if L1_tail.data < L2_tail.data:
+            tail.next = L1_tail
+            L1_tail = L1_tail.next
+            tail = tail.next
+        else:
+            tail.next = L2_tail
+            L2_tail = L2_tail.next
+            tail = tail.next
+
+    if L1_tail:
+        tail.next = L1_tail
+    if L2_tail:
+        tail.next = L2_tail
+
+    return dummy_head.next
+
+# T: O(n)
+# S: O(n) because we use additional head node to store values
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "sorted_lists_merge.py", "sorted_lists_merge.tsv", merge_two_sorted_lists
+            "sorted_lists_merge.py", "sorted_lists_merge.tsv", merge_two_sorted_lists2
         )
     )

@@ -36,8 +36,9 @@ def lca(
     # if found only one node but not other, then the LCA must be the left or right node.
     if left_node != None:
         return left_node
-    
+
     return right_node
+
 
 # T: O(n)
 # S: O(h) due to recursive calls proportional to tree height
