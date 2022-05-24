@@ -120,8 +120,8 @@ def string_to_int(s: str) -> int:  # no base case for string to int
 def int_to_string2(x: int) -> str:
     # check for 0 because while can't deal with it
     if x == 0:
-        return '0'
-    
+        return "0"
+
     is_neg = False
     if x < 0:
         is_neg = True
@@ -132,7 +132,7 @@ def int_to_string2(x: int) -> str:
 
     while x:
         remainder = x % 10
-        remainder = chr(ord('0') + remainder)  # convert int to char
+        remainder = chr(ord("0") + remainder)  # convert int to char
         x = x // 10  # floor div
         s = s + remainder
 
@@ -148,7 +148,7 @@ def string_to_int2(s: str) -> int:
 
     i = 0
     x = 0
-    
+
     is_neg = False
     if s[0] == "-":
         i = 1
@@ -168,6 +168,7 @@ def string_to_int2(s: str) -> int:
 
     # T: O(n)
     # S: O(1)
+
 
 # def int_to_string(x: int) -> str:
 #     return None
