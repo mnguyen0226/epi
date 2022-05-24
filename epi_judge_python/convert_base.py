@@ -1,3 +1,6 @@
+import functools
+from math import remainder
+import string
 from test_framework import generic_test
 
 # Helper function that convert int to letter
@@ -98,9 +101,34 @@ def convert_base(num_as_string: str, b1: int, b2: int) -> str:
     # Space Complexity: O(n) since using a new string to store the new digit at a time
 
 
+# 5/24/2022
+def convert_base2(num_as_string: str, b1: int, b2: int) -> str:
+    def construct_from_base(num_as_int, base):
+        if num_as_int == 0:
+            return ""
+        return (
+            construct_from_base(num_as_int // base, base)
+            + string.hexdigits[num_as_int % base].upper()
+        )
+
+    is_neg = num_as_string[0] == "-" # true is 1
+    
+    num_as_int = functools.reduce(
+        lambda x, c: x * b1 + string.hexdigits.index(c.lower()), # function/operator - convert each character to number and x is 0 initizer
+        num_as_string[is_neg:], # go through all character
+        0, # initial value is 0
+    )
+        
+    return ("-" if is_neg else "") + (
+        "0" if num_as_int == 0 else construct_from_base(num_as_int, b2)
+    )
+
+    # T: O(n)
+    # S: O(1)
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "convert_base.py", "convert_base.tsv", convert_base
+            "convert_base.py", "convert_base.tsv", convert_base2
         )
     )

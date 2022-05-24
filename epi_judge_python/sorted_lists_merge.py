@@ -60,6 +60,7 @@ def merge_two_sorted_lists2(
 
     return dummy_head.next
 
+
 # T: O(n)
 # S: O(n) because we use additional head node to store values
 
