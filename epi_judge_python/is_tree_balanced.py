@@ -53,6 +53,9 @@ def is_balanced_binary_tree2(tree: BinaryTreeNode) -> bool:
 
     return dfs_post_order(tree)[0]
 
+    # T: O(n) because we visit all the node of the tree
+    # S: O(h) we use recursion and the calll stack corresponds to a sequence of calls from the root throught the unique path the the current node, the stack height is therefore bounded by the height of tree
+
 
 if __name__ == "__main__":
     exit(

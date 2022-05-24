@@ -27,9 +27,35 @@ def is_symmetric(tree: BinaryTreeNode) -> bool:
     # S: O(h) becase the code only run when the tree is symmetric, the callstack is proportional to the tree height.
 
 
+# 5/23/2022
+def is_symmetric2(tree: BinaryTreeNode) -> bool:
+
+    # we write it like this so that we can recursively check right and left subtree
+    def check_equivalent(lst: BinaryTreeNode, rst: BinaryTreeNode) -> bool:
+        # if there is only rootnode
+        if rst is None and lst is None:
+            return True
+
+        # if both left and right tree are there
+        elif rst and lst:
+            return (
+                rst.data == lst.data
+                and check_equivalent(rst.right, lst.left)
+                and check_equivalent(rst.left, lst.right)
+            )
+
+        # else either one not there is False
+        return False
+
+    return tree is None or check_equivalent(tree.left, tree.right)
+
+    # T: O(n) because we visit all node
+    # S: O(h) becase the code only run when the tree is symmetric, the callstack is proportional to the tree height. Because we dp height traversal
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "is_tree_symmetric.py", "is_tree_symmetric.tsv", is_symmetric
+            "is_tree_symmetric.py", "is_tree_symmetric.tsv", is_symmetric2
         )
     )
