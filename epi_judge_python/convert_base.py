@@ -111,20 +111,24 @@ def convert_base2(num_as_string: str, b1: int, b2: int) -> str:
             + string.hexdigits[num_as_int % base].upper()
         )
 
-    is_neg = num_as_string[0] == "-" # true is 1
-    
+    is_neg = num_as_string[0] == "-"  # true is 1
+
     num_as_int = functools.reduce(
-        lambda x, c: x * b1 + string.hexdigits.index(c.lower()), # function/operator - convert each character to number and x is 0 initizer
-        num_as_string[is_neg:], # go through all character
-        0, # initial value is 0
+        lambda x, c: x * b1
+        + string.hexdigits.index(
+            c.lower()
+        ),  # function/operator - convert each character to number and x is 0 initizer
+        num_as_string[is_neg:],  # go through all character
+        0,  # initial value is 0
     )
-        
+
     return ("-" if is_neg else "") + (
         "0" if num_as_int == 0 else construct_from_base(num_as_int, b2)
     )
 
     # T: O(n)
     # S: O(1)
+
 
 if __name__ == "__main__":
     exit(

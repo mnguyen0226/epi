@@ -43,6 +43,31 @@ def lca(
 # T: O(n)
 # S: O(h) due to recursive calls proportional to tree height
 
+# 5/24/2022 - inorder traversal
+def lca2(
+    tree: BinaryTreeNode, node0: BinaryTreeNode, node1: BinaryTreeNode
+) -> Optional[BinaryTreeNode]:
+    if tree is None:
+        return None
+
+    # searching step
+    if tree.data == node0.data or tree.data == node1.data:
+        return tree
+
+    # visit left
+    lst = lca(tree.left, node0, node1)
+    rst = lca(tree.right, node0, node1)
+
+    if lst and rst:
+        return tree
+
+    if not lst and not rst:
+        return None
+
+    if lst:
+        return lst
+    return rst
+
 
 @enable_executor_hook
 def lca_wrapper(executor, tree, key1, key2):
