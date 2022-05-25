@@ -2,10 +2,10 @@ from typing import List
 
 from test_framework import generic_test
 
-
+# 5/25/2022
 def sort_k_increasing_decreasing_array(A: List[int]) -> List[int]:
-    # TODO - you fill in here.
-    return []
+
+    return sorted(A)
 
 
 if __name__ == "__main__":
