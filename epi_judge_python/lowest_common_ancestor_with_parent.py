@@ -52,6 +52,7 @@ def lca_better(
     # T: O(n)
     # S: O(1)
 
+
 @enable_executor_hook
 def lca_wrapper(executor, tree, node0, node1):
     result = executor.run(
