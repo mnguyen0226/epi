@@ -3,30 +3,30 @@ from typing import Iterator, List
 import heapq
 from test_framework import generic_test
 
-# 5/18/2022
-# Using the min-heap and sliding window
+# 5/25/2022
+# Why is this iterator?
+# Solution 1:     return sorted(sequence) - T: O(nlogn) - merged sort
+# Solution 2: Insertion Sort O(k.n)
+# Solution 3: Heap Sort O(k.logn)
 def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int]:
-    min_heap = []
+    results = []
+    min_heap: List[int] = []
 
-    # adds the first k elements into min-heap. Sort if there are fewer than k elements
+    # we need to add k+1 element, but first add k to the heap, we will make +1 automatically
     for x in itertools.islice(sequence, k):
-        print(f"-----\n Testing: {x}")
         heapq.heappush(min_heap, x)
 
-    result = []
-
-    # for every new element, add it to the min_heap and extract the smallest
+    # itertool keep track of iteration in the sequence
     for x in sequence:
-        smallest = heapq.heappushpop(min_heap, x)
-        result.append(smallest)
+        smallest_val = heapq.heappushpop(min_heap, x)
+        results.append(smallest_val)
 
-    # sequence is exhausted, iteratively extracts the remaining elements
-
+    # when sequence is finish iterate, we pop the rest of the heap
     while min_heap:
-        smallest = heapq.heappop(min_heap)
-        result.append(smallest)
+        smallest_val = heapq.heappop(min_heap)
+        results.append(smallest_val)
 
-    return result
+    return results
 
 
 def sort_approximately_sorted_array_wrapper(sequence, k):
