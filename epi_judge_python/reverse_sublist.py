@@ -28,7 +28,7 @@ def reverse_sublist(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
     return dummy_head.next
 
     # T: O(n)
-    # S: O(1) because we use exisiting node, not storing anything
+    # S: O(1) because we use exisiting node, not storing anything. We only use pointer
 
 def reverse_sublist2(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
     dummy_head = sublist_head = ListNode(0, L)
@@ -47,7 +47,7 @@ def reverse_sublist2(L: ListNode, start: int, finish: int) -> Optional[ListNode]
     return dummy_head.next
 
     # T: O(n)
-    # S: O(1) because we use exisiting node, not storing anything
+    # S: O(1) because we use exisiting node, not storing anything. We only use pointer
     
 if __name__ == "__main__":
     exit(
