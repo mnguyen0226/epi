@@ -1,6 +1,8 @@
 import functools
 import math
-from typing import Iterator, List
+from typing import Iterator, List, Tuple
+import itertools
+import heapq
 
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
@@ -27,9 +29,52 @@ class Star:
         return math.isclose(self.distance, rhs.distance)
 
 
+# 5/25/2022
+# Because of the number of stars is too large, using the min-heap is in-efficient, we should use the max heap and get rid of the furthest one at a time
 def find_closest_k_stars(stars: Iterator[Star], k: int) -> List[Star]:
-    # TODO - you fill in here.
-    return []
+    # Put all the stars to the min-heap and retrieve the k number of stars
+    results: List[Star] = []
+    max_heap: List[Tuple[int, Star]] = []  # store the star and the distance
+
+    # take the first k star
+    for x in itertools.islice(stars, k):
+        heapq.heappush(max_heap, (-x.distance, x))
+
+    # add one star at the time, and get rid of the max
+    for x in stars:
+        _, _ = heapq.heappushpop(max_heap, (-x.distance, x))
+
+    # after finish, add the star to the results
+    while max_heap:
+        _, furthest_star = heapq.heappop(
+            max_heap
+        )  # since we push negative, the pop is actually the pop the max out
+        results.append(furthest_star)
+
+    return results
+
+
+# 5/25/2022
+# Instead of using min heap to find the min in the set, we will use max heap as curated list
+# This way is not useful for 10.2 because we not trying to find the smallest subset in the large dataset but to hand pick smallest one a t a time
+def find_closest_k_stars_cleaner(stars: Iterator[Star], k: int) -> List[Star]:
+    result: List[Star] = []
+    max_heap: List[Tuple[int, Star]] = []
+
+    # append new star until reach k + 1
+    for star in stars:
+        heapq.heappush(max_heap, (-star.distance, star))
+
+        # get rid of the furthest star
+        if len(max_heap) == k + 1:
+            heapq.heappop(max_heap)
+
+    # here, we got the curated list of closest stars
+    while max_heap:
+        _, star = heapq.heappop(max_heap)
+        result.append(star)
+
+    return result
 
 
 def comp(expected_output, output):
@@ -43,7 +88,7 @@ def comp(expected_output, output):
 @enable_executor_hook
 def find_closest_k_stars_wrapper(executor, stars, k):
     stars = [Star(*a) for a in stars]
-    return executor.run(functools.partial(find_closest_k_stars, iter(stars), k))
+    return executor.run(functools.partial(find_closest_k_stars_cleaner, iter(stars), k))
 
 
 if __name__ == "__main__":
