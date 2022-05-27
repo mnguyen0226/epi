@@ -1,5 +1,7 @@
 from typing import List
 
+from jmespath import search
+
 from test_framework import generic_test
 
 # 5/18/2022
@@ -35,8 +37,28 @@ def search_first_of_k(A: List[int], k: int) -> int:
 
 
 def search_first_of_k2(A: List[int], k: int) -> int:
+    L, R = 0, len(A) - 1
+    found = -1
 
-    return 0
+    while L <= R:
+        M = L + (R - L) / 2
+        M = int(M)
+
+        if A[M] < k:
+            L = M + 1
+        elif A[M] == k:
+            found = M
+
+            # the reason why we shift the right is due to we want the Middle to gradually go to the right to meet the first number. we will return the "found" index regardless
+            R = M - 1
+        else:
+            R = M - 1
+
+    return found
+
+
+# T: O(logn) due to binary search
+# S: O(1) due to not using any data structure to store space
 
 
 if __name__ == "__main__":
