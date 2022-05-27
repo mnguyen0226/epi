@@ -13,7 +13,7 @@ def online_median(sequence: Iterator[int]) -> List[float]:
     # keep adding value to the max heap, if the length is larger than 1 then transfer max element to the min heap
     for x in sequence:
         heapq.heappush(max_heap, -x)  # max heap
-        
+
         # check the element is in order: make sure all element in small is less than the large
         if max_heap and min_heap and (-max_heap[0] > min_heap[0]):
             wrong_element = -heapq.heappop(max_heap)
@@ -36,6 +36,7 @@ def online_median(sequence: Iterator[int]) -> List[float]:
             results.append((-max_heap[0] + min_heap[0]) / 2.0)
 
     return results
+
 
 # T: O(logn) due to the adding and extracting element from the heap
 # S: O(n) due to using 2 heaps to store all element

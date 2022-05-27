@@ -6,10 +6,10 @@ from test_framework import generic_test, test_utils
 def k_largest_in_binary_heap(A: List[int], k: int) -> List[int]:
     max_heap: List[int] = []
     results = []
-    
+
     for s in A:
-        heapq.heappush(max_heap,-s)
-    
+        heapq.heappush(max_heap, -s)
+
     while k:
         max_num = -heapq.heappop(max_heap)
         results.append(max_num)
@@ -17,13 +17,15 @@ def k_largest_in_binary_heap(A: List[int], k: int) -> List[int]:
 
     return results
 
+
 # T: O(klogn) because of using priority queue. This is still better than nlogn + O(k) for merge sort and k extraction
-# S: O(n) 
+# S: O(n)
+
 
 def k_largest_in_binary_heap2(A: List[int], k: int) -> List[int]:
-    
-    
+
     return []
+
 
 if __name__ == "__main__":
     exit(

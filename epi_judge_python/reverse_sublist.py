@@ -30,25 +30,27 @@ def reverse_sublist(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
     # T: O(n)
     # S: O(1) because we use exisiting node, not storing anything. We only use pointer
 
+
 def reverse_sublist2(L: ListNode, start: int, finish: int) -> Optional[ListNode]:
     dummy_head = sublist_head = ListNode(0, L)
-    
-    for _ in range(1, start): # becuase the number starts with 1
+
+    for _ in range(1, start):  # becuase the number starts with 1
         sublist_head = sublist_head.next
-    
+
     sublist_iter = sublist_head.next
-    
-    for _ in range(finish-start):
+
+    for _ in range(finish - start):
         temp = sublist_iter.next
         sublist_iter.next = temp.next
         temp.next = sublist_head.next
         sublist_head.next = temp
-    
+
     return dummy_head.next
 
     # T: O(n)
     # S: O(1) because we use exisiting node, not storing anything. We only use pointer
-    
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
