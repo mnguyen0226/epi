@@ -6,11 +6,35 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 # 5/25/2022
-def search_entry_equal_to_its_index(A: List[int]) -> int:
+# Using linear search
+def search_entry_equal_to_its_index_linear_sort(A: List[int]) -> int:
     for i in range(len(A)):
         if A[i] == i:
             return A[i]
     return -1
+
+
+# T: O(n)
+# S: O(1)
+
+
+def search_entry_equal_to_its_index(A: List[int]) -> int:
+    L, R = 0, len(A) - 1
+
+    while L <= R:
+        M = L + (R - L) // 2
+
+        if A[M] < M:
+            L = M + 1
+        elif A[M] == M:
+            return M
+        else:
+            R = M - 1
+
+    return -1
+
+# T: O(logn)
+# S: O(1)
 
 
 @enable_executor_hook
