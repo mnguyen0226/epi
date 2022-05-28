@@ -93,6 +93,9 @@ def dutch_flag_partition_3(pivot_index: int, A: List[int]) -> None:
 
     return A
 
+    # T: O(n)
+    # S: O(1)
+
 
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):
