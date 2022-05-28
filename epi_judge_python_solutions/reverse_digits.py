@@ -10,7 +10,9 @@ def reverse(x: int) -> int:
     return -result if x < 0 else result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('reverse_digits.py',
-                                       'reverse_digits.tsv', reverse))
+        generic_test.generic_test_main(
+            "reverse_digits.py", "reverse_digits.tsv", reverse
+        )
+    )

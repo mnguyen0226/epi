@@ -13,7 +13,9 @@ def multiply(x: int, y: int) -> int:
     return running_sum
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('primitive_multiply.py',
-                                       'primitive_multiply.tsv', multiply))
+        generic_test.generic_test_main(
+            "primitive_multiply.py", "primitive_multiply.tsv", multiply
+        )
+    )

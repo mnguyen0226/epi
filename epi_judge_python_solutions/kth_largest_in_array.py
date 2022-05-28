@@ -42,7 +42,7 @@ def find_kth_largest(k: int, A: List[int]) -> int:
             else:  # new_pivot_idx < k - 1.
                 left = new_pivot_idx + 1
 
-        raise IndexError('no k-th node in array A')
+        raise IndexError("no k-th node in array A")
 
     return find_kth(operator.gt)
 
@@ -83,13 +83,14 @@ def find_kth_smallest(k, A):
                 right = new_pivot_idx - 1
             else:  # new_pivot_idx < k - 1.
                 left = new_pivot_idx + 1
-        raise IndexError('no k-th node in array A')
+        raise IndexError("no k-th node in array A")
 
     return find_kth(operator.lt)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('kth_largest_in_array.py',
-                                       'kth_largest_in_array.tsv',
-                                       find_kth_largest))
+        generic_test.generic_test_main(
+            "kth_largest_in_array.py", "kth_largest_in_array.tsv", find_kth_largest
+        )
+    )

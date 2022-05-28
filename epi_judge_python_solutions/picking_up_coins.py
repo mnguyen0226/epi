@@ -14,10 +14,12 @@ def maximum_revenue(coins: List[int]) -> int:
 
         max_revenue_a = coins[a] + min(
             compute_maximum_revenue_for_range(a + 2, b),
-            compute_maximum_revenue_for_range(a + 1, b - 1))
+            compute_maximum_revenue_for_range(a + 1, b - 1),
+        )
         max_revenue_b = coins[b] + min(
             compute_maximum_revenue_for_range(a + 1, b - 1),
-            compute_maximum_revenue_for_range(a, b - 2))
+            compute_maximum_revenue_for_range(a, b - 2),
+        )
         return max(max_revenue_a, max_revenue_b)
 
     return compute_maximum_revenue_for_range(0, len(coins) - 1)
@@ -32,17 +34,23 @@ def maximum_revenue_alternative(coins):
             return coins[a]
 
         return max(
-            coins[a] + prefix_sum[b] - (prefix_sum[a] if a + 1 > 0 else 0) -
-            compute_maximum_revenue_for_range(a + 1, b), coins[b] +
-            prefix_sum[b - 1] - (prefix_sum[a - 1] if a > 0 else 0) -
-            compute_maximum_revenue_for_range(a, b - 1))
+            coins[a]
+            + prefix_sum[b]
+            - (prefix_sum[a] if a + 1 > 0 else 0)
+            - compute_maximum_revenue_for_range(a + 1, b),
+            coins[b]
+            + prefix_sum[b - 1]
+            - (prefix_sum[a - 1] if a > 0 else 0)
+            - compute_maximum_revenue_for_range(a, b - 1),
+        )
 
     prefix_sum = list(itertools.accumulate(coins))
     return compute_maximum_revenue_for_range(0, len(coins) - 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('picking_up_coins.py',
-                                       'picking_up_coins.tsv',
-                                       maximum_revenue))
+        generic_test.generic_test_main(
+            "picking_up_coins.py", "picking_up_coins.tsv", maximum_revenue
+        )
+    )

@@ -22,7 +22,9 @@ def stable_sort_list(L: ListNode) -> Optional[ListNode]:
     return merge_two_sorted_lists(stable_sort_list(L), stable_sort_list(slow))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('sort_list.py', 'sort_list.tsv',
-                                       stable_sort_list))
+        generic_test.generic_test_main(
+            "sort_list.py", "sort_list.tsv", stable_sort_list
+        )
+    )

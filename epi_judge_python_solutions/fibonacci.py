@@ -11,7 +11,5 @@ def fibonacci(n: int) -> int:
     return fibonacci(n - 1) + fibonacci(n - 2)
 
 
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main('fibonacci.py', 'fibonacci.tsv',
-                                       fibonacci))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("fibonacci.py", "fibonacci.tsv", fibonacci))

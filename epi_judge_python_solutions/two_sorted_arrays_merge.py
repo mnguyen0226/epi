@@ -3,8 +3,7 @@ from typing import List
 from test_framework import generic_test
 
 
-def merge_two_sorted_arrays(A: List[int], m: int, B: List[int],
-                            n: int) -> None:
+def merge_two_sorted_arrays(A: List[int], m: int, B: List[int], n: int) -> None:
 
     a, b, write_idx = m - 1, n - 1, m + n - 1
     while a >= 0 and b >= 0:
@@ -25,8 +24,11 @@ def merge_two_sorted_arrays_wrapper(A, m, B, n):
     return A
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('two_sorted_arrays_merge.py',
-                                       'two_sorted_arrays_merge.tsv',
-                                       merge_two_sorted_arrays_wrapper))
+        generic_test.generic_test_main(
+            "two_sorted_arrays_merge.py",
+            "two_sorted_arrays_merge.tsv",
+            merge_two_sorted_arrays_wrapper,
+        )
+    )

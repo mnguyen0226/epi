@@ -18,8 +18,11 @@ def calculate_largest_rectangle(heights: List[int]) -> int:
     return max_rectangle_area
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('largest_rectangle_under_skyline.py',
-                                       'largest_rectangle_under_skyline.tsv',
-                                       calculate_largest_rectangle))
+        generic_test.generic_test_main(
+            "largest_rectangle_under_skyline.py",
+            "largest_rectangle_under_skyline.tsv",
+            calculate_largest_rectangle,
+        )
+    )

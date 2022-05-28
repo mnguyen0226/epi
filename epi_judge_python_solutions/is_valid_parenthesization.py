@@ -3,7 +3,7 @@ from test_framework import generic_test
 
 def is_well_formed(s: str) -> bool:
 
-    left_chars, lookup = [], {'(': ')', '{': '}', '[': ']'}
+    left_chars, lookup = [], {"(": ")", "{": "}", "[": "]"}
     for c in s:
         if c in lookup:
             left_chars.append(c)
@@ -13,8 +13,11 @@ def is_well_formed(s: str) -> bool:
     return not left_chars
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('is_valid_parenthesization.py',
-                                       'is_valid_parenthesization.tsv',
-                                       is_well_formed))
+        generic_test.generic_test_main(
+            "is_valid_parenthesization.py",
+            "is_valid_parenthesization.tsv",
+            is_well_formed,
+        )
+    )

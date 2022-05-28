@@ -19,19 +19,20 @@ def search_smallest_linear_search(A: List[int]) -> int:
 
 def search_smallest(A: List[int]) -> int:
     L, R = 0, len(A) - 1
-    
-    while L < R: # can't be equal since the value is distinct
+
+    while L < R:  # can't be equal since the value is distinct
         M = L + (R - L) // 2
-        
+
         # if we are in the larger portion
-        if A[M] > A[R]: 
+        if A[M] > A[R]:
             L = M + 1
-            
+
         # if we are in the smaller portion, we will move R gradually smaller
         else:
             R = M
-    
+
     return L
+
 
 if __name__ == "__main__":
     exit(

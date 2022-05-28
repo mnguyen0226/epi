@@ -13,9 +13,9 @@ def look_and_say(n: int) -> str:
                 count += 1
             result.append(str(count) + s[i])
             i += 1
-        return ''.join(result)
+        return "".join(result)
 
-    s = '1'
+    s = "1"
     for _ in range(1, n):
         s = next_number(s)
     return s
@@ -23,14 +23,15 @@ def look_and_say(n: int) -> str:
 
 # Pythonic solution uses the power of itertools.groupby().
 def look_and_say_pythonic(n):
-    s = '1'
+    s = "1"
     for _ in range(n - 1):
-        s = ''.join(
-            str(len(list(group))) + key for key, group in itertools.groupby(s))
+        s = "".join(str(len(list(group))) + key for key, group in itertools.groupby(s))
     return s
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('look_and_say.py', 'look_and_say.tsv',
-                                       look_and_say))
+        generic_test.generic_test_main(
+            "look_and_say.py", "look_and_say.tsv", look_and_say
+        )
+    )

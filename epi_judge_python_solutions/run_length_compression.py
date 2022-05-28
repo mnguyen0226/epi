@@ -13,7 +13,7 @@ def decoding(s: str) -> str:
         else:  # c is a letter of alphabet.
             result.append(c * count)  # Appends count copies of c to result.
             count = 0
-    return ''.join(result)
+    return "".join(result)
 
 
 def encoding(s: str) -> str:
@@ -26,22 +26,23 @@ def encoding(s: str) -> str:
             count = 1
         else:  # s[i] == s[i - 1].
             count += 1
-    return ''.join(result)
+    return "".join(result)
 
 
 def encoding_pythonic(s):
-    return ''.join(str(len(list(g))) + c for c, g in itertools.groupby(s))
+    return "".join(str(len(list(g))) + c for c, g in itertools.groupby(s))
 
 
 def rle_tester(encoded, decoded):
     if decoding(encoded) != decoded:
-        raise TestFailure('Decoding failed')
+        raise TestFailure("Decoding failed")
     if encoding(decoded) != encoded:
-        raise TestFailure('Encoding failed')
+        raise TestFailure("Encoding failed")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('run_length_compression.py',
-                                       'run_length_compression.tsv',
-                                       rle_tester))
+        generic_test.generic_test_main(
+            "run_length_compression.py", "run_length_compression.tsv", rle_tester
+        )
+    )

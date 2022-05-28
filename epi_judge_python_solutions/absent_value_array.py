@@ -16,8 +16,7 @@ def find_missing_element(stream: Iterator[int]) -> int:
 
     # Look for a bucket that contains less than (1 << 16) elements.
     bucket_capacity = 1 << 16
-    candidate_bucket = next(i for i, c in enumerate(counter)
-                            if c < bucket_capacity)
+    candidate_bucket = next(i for i, c in enumerate(counter) if c < bucket_capacity)
 
     # Finds all IP addresses in the stream whose first 16 bits are equal to
     # candidate_bucket.
@@ -34,20 +33,23 @@ def find_missing_element(stream: Iterator[int]) -> int:
         if v == 0:
             return (candidate_bucket << 16) | i
 
-    raise ValueError('no missing element')
+    raise ValueError("no missing element")
 
 
 def find_missing_element_wrapper(stream):
     try:
         res = find_missing_element(iter(stream))
         if res in stream:
-            raise TestFailure('{} appears in stream'.format(res))
+            raise TestFailure("{} appears in stream".format(res))
     except ValueError:
-        raise TestFailure('Unexpected no missing element exception')
+        raise TestFailure("Unexpected no missing element exception")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('absent_value_array.py',
-                                       'absent_value_array.tsv',
-                                       find_missing_element_wrapper))
+        generic_test.generic_test_main(
+            "absent_value_array.py",
+            "absent_value_array.tsv",
+            find_missing_element_wrapper,
+        )
+    )

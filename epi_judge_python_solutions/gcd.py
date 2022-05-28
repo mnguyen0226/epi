@@ -16,5 +16,5 @@ def gcd(x: int, y: int) -> int:
     return gcd(x, y - x)  # Both x and y are odd.
 
 
-if __name__ == '__main__':
-    exit(generic_test.generic_test_main('gcd.py', 'gcd.tsv', gcd))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("gcd.py", "gcd.tsv", gcd))

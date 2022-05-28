@@ -13,8 +13,9 @@ def n_queens(n: int) -> List[List[int]]:
             # Test if a newly placed queen will conflict any earlier queens
             # placed before.
             if all(
-                    abs(c - col) not in (0, row - i)
-                    for i, c in enumerate(col_placement[:row])):
+                abs(c - col) not in (0, row - i)
+                for i, c in enumerate(col_placement[:row])
+            ):
                 col_placement[row] = col
                 solve_n_queens(row + 1)
 
@@ -28,7 +29,5 @@ def comp(a, b):
     return sorted(a) == sorted(b)
 
 
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main('n_queens.py', 'n_queens.tsv', n_queens,
-                                       comp))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("n_queens.py", "n_queens.tsv", n_queens, comp))

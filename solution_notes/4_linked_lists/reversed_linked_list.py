@@ -4,28 +4,29 @@
 def reverseListIter(head):
     prev, curr = None, head
     while curr:
-        temp = curr.next # temp wull be null
+        temp = curr.next  # temp wull be null
         curr.next = prev
-        prev = curr # last node
+        prev = curr  # last node
         curr = temp
-    
+
     return prev
     # Time Complexity: O(n)
     # Space Complexity: O(1) cuz we use only the provided nodes
-    
+
+
 # How to reverse a linked list recursively
 def reverseListRec(head):
     # base case: if the head is nulll
-    if not head:  
+    if not head:
         return None
 
     newHead = head
-    if head.next: # is there is still more node
-        newHead = reverseListRec(head.next) # if this return something
+    if head.next:  # is there is still more node
+        newHead = reverseListRec(head.next)  # if this return something
         head.next.next = head
 
     head.next = None
-    
+
     return newHead
     # Time Complexity: O(n)
-    # Space Complexity: O(n)    
+    # Space Complexity: O(n)

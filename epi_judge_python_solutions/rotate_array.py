@@ -25,10 +25,8 @@ def rotate_array(rotate_amount: int, A: List[int]) -> None:
 def rotate_array_naive(rotate_amount: int, A: List[int]) -> None:
     rotate_amount %= len(A)
     A[:] = A[::-1]  # reverse whole list
-    A[:rotate_amount] = A[:rotate_amount][::
-                                          -1]  # reverse A[:rotate_amount] part
-    A[rotate_amount:] = A[rotate_amount:][::
-                                          -1]  # reverse A[rotate_amount:] part
+    A[:rotate_amount] = A[:rotate_amount][::-1]  # reverse A[:rotate_amount] part
+    A[rotate_amount:] = A[rotate_amount:][::-1]  # reverse A[rotate_amount:] part
 
 
 @enable_executor_hook
@@ -38,7 +36,9 @@ def rotate_array_wrapper(executor, A, rotate_amount):
     return a_copy
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('rotate_array.py', 'rotate_array.tsv',
-                                       rotate_array_wrapper))
+        generic_test.generic_test_main(
+            "rotate_array.py", "rotate_array.tsv", rotate_array_wrapper
+        )
+    )

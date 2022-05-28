@@ -4,8 +4,9 @@ from list_node import ListNode
 from test_framework import generic_test
 
 
-def merge_two_sorted_lists(L1: Optional[ListNode],
-                           L2: Optional[ListNode]) -> Optional[ListNode]:
+def merge_two_sorted_lists(
+    L1: Optional[ListNode], L2: Optional[ListNode]
+) -> Optional[ListNode]:
 
     # Creates a placeholder for the result.
     dummy_head = tail = ListNode()
@@ -22,8 +23,9 @@ def merge_two_sorted_lists(L1: Optional[ListNode],
     return dummy_head.next
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('sorted_lists_merge.py',
-                                       'sorted_lists_merge.tsv',
-                                       merge_two_sorted_lists))
+        generic_test.generic_test_main(
+            "sorted_lists_merge.py", "sorted_lists_merge.tsv", merge_two_sorted_lists
+        )
+    )

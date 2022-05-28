@@ -6,7 +6,7 @@ from typing import Dict, List
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-CharWithFrequency = collections.namedtuple('CharWithFrequency', ('c', 'freq'))
+CharWithFrequency = collections.namedtuple("CharWithFrequency", ("c", "freq"))
 
 
 def huffman_encoding(symbols: List[CharWithFrequency]) -> float:
@@ -20,13 +20,19 @@ def huffman_encoding(symbols: List[CharWithFrequency]) -> float:
             return self.aggregate_freq <= other.aggregate_freq
 
         def symbols(self):
-            return self.left.symbols() + self.right.symbols(
-            ) if self.s is None else self.s.c
+            return (
+                self.left.symbols() + self.right.symbols()
+                if self.s is None
+                else self.s.c
+            )
 
         def __repr__(self):
-            return '%s <- %r(%g) -> %s' % (self.left and self.left.symbols(),
-                                           self.symbols(), self.aggregate_freq,
-                                           self.right and self.right.symbols())
+            return "%s <- %r(%g) -> %s" % (
+                self.left and self.left.symbols(),
+                self.symbols(),
+                self.aggregate_freq,
+                self.right and self.right.symbols(),
+            )
 
     # Initially assigns each symbol into candidates.
     candidates = [BinaryTree(s.freq, s) for s in symbols]
@@ -37,18 +43,18 @@ def huffman_encoding(symbols: List[CharWithFrequency]) -> float:
         left, right = heapq.heappop(candidates), heapq.heappop(candidates)
         heapq.heappush(
             candidates,
-            BinaryTree(left.aggregate_freq + right.aggregate_freq, None, left,
-                       right))
+            BinaryTree(left.aggregate_freq + right.aggregate_freq, None, left, right),
+        )
 
     def assign_huffman_code(tree, code):
         if tree:
             if tree.s:
                 # This node is a leaf.
-                char_to_encoding[tree.s.c] = ''.join(code)
+                char_to_encoding[tree.s.c] = "".join(code)
             else:  # Non-leaf node.
-                code.append('0')
+                code.append("0")
                 assign_huffman_code(tree.left, code)
-                code[-1] = '1'
+                code[-1] = "1"
                 assign_huffman_code(tree.right, code)
                 del code[-1]
 
@@ -61,14 +67,15 @@ def huffman_encoding(symbols: List[CharWithFrequency]) -> float:
 @enable_executor_hook
 def huffman_encoding_wrapper(executor, symbols):
     if any(len(x[0]) != 1 for x in symbols):
-        raise RuntimeError('CharWithFrequency parser: string length is not 1')
+        raise RuntimeError("CharWithFrequency parser: string length is not 1")
 
     symbols = [CharWithFrequency(c[0], freq) for (c, freq) in symbols]
     return executor.run(functools.partial(huffman_encoding, symbols))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('huffman_coding.py',
-                                       'huffman_coding.tsv',
-                                       huffman_encoding_wrapper))
+        generic_test.generic_test_main(
+            "huffman_coding.py", "huffman_coding.tsv", huffman_encoding_wrapper
+        )
+    )

@@ -19,8 +19,7 @@ class TrafficElement:
         return self.time == other.time and self.volume == other.volume
 
 
-def calculate_traffic_volumes(A: List[TrafficElement],
-                              w: int) -> List[TrafficElement]:
+def calculate_traffic_volumes(A: List[TrafficElement], w: int) -> List[TrafficElement]:
 
     sliding_window = QueueWithMax()
     maximum_volumes = []
@@ -29,8 +28,8 @@ def calculate_traffic_volumes(A: List[TrafficElement],
         while traffic_info.time - sliding_window.head().time > w:
             sliding_window.dequeue()
         maximum_volumes.append(
-            TrafficElement(traffic_info.time,
-                           sliding_window.max().volume))
+            TrafficElement(traffic_info.time, sliding_window.max().volume)
+        )
     return maximum_volumes
 
 
@@ -43,8 +42,11 @@ def calculate_traffic_volumes_wrapper(executor, A, w):
     return [(x.time, x.volume) for x in result]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('max_of_sliding_window.py',
-                                       'max_of_sliding_window.tsv',
-                                       calculate_traffic_volumes_wrapper))
+        generic_test.generic_test_main(
+            "max_of_sliding_window.py",
+            "max_of_sliding_window.tsv",
+            calculate_traffic_volumes_wrapper,
+        )
+    )

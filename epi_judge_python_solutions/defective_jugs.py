@@ -5,7 +5,7 @@ from typing import List
 from test_framework import generic_test
 from test_framework.test_utils import enable_executor_hook
 
-Jug = collections.namedtuple('Jug', ('low', 'high'))
+Jug = collections.namedtuple("Jug", ("low", "high"))
 
 
 def check_feasible(jugs: List[Jug], L: int, H: int) -> bool:
@@ -15,9 +15,10 @@ def check_feasible(jugs: List[Jug], L: int, H: int) -> bool:
             return False
 
         # Checks the volume for each jug to see if it is possible.
-        return any((L <= j.low and j.high <= H)
-                   or check_feasible_helper(L - j.low, H - j.high)
-                   for j in jugs)
+        return any(
+            (L <= j.low and j.high <= H) or check_feasible_helper(L - j.low, H - j.high)
+            for j in jugs
+        )
 
     return check_feasible_helper(L, H)
 
@@ -28,8 +29,9 @@ def check_feasible_wrapper(executor, jugs, l, h):
     return executor.run(functools.partial(check_feasible, jugs, l, h))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('defective_jugs.py',
-                                       'defective_jugs.tsv',
-                                       check_feasible_wrapper))
+        generic_test.generic_test_main(
+            "defective_jugs.py", "defective_jugs.tsv", check_feasible_wrapper
+        )
+    )

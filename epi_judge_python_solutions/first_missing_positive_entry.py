@@ -19,8 +19,11 @@ def find_first_missing_positive(A: List[int]) -> int:
     return next((i + 1 for i, a in enumerate(A) if a != i + 1), len(A) + 1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('first_missing_positive_entry.py',
-                                       'first_missing_positive_entry.tsv',
-                                       find_first_missing_positive))
+        generic_test.generic_test_main(
+            "first_missing_positive_entry.py",
+            "first_missing_positive_entry.tsv",
+            find_first_missing_positive,
+        )
+    )

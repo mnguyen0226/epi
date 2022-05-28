@@ -16,12 +16,15 @@ def multiply(num1: List[int], num2: List[int]) -> List[int]:
             result[i + j + 1] %= 10
 
     # Remove the leading zeroes.
-    result = result[next((i for i, x in enumerate(result)
-                          if x != 0), len(result)):] or [0]
+    result = result[
+        next((i for i, x in enumerate(result) if x != 0), len(result)) :
+    ] or [0]
     return [sign * result[0]] + result[1:]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('int_as_array_multiply.py',
-                                       'int_as_array_multiply.tsv', multiply))
+        generic_test.generic_test_main(
+            "int_as_array_multiply.py", "int_as_array_multiply.tsv", multiply
+        )
+    )

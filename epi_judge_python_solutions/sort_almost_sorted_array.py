@@ -5,8 +5,7 @@ from typing import Iterator, List
 from test_framework import generic_test
 
 
-def sort_approximately_sorted_array(sequence: Iterator[int],
-                                    k: int) -> List[int]:
+def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int]:
 
     min_heap: List[int] = []
     # Adds the first k elements into min_heap. Stop if there are fewer than k
@@ -32,8 +31,11 @@ def sort_approximately_sorted_array_wrapper(sequence, k):
     return sort_approximately_sorted_array(iter(sequence), k)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            'sort_almost_sorted_array.py', 'sort_almost_sorted_array.tsv',
-            sort_approximately_sorted_array_wrapper))
+            "sort_almost_sorted_array.py",
+            "sort_almost_sorted_array.tsv",
+            sort_approximately_sorted_array_wrapper,
+        )
+    )

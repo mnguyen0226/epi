@@ -6,8 +6,7 @@ from test_framework import generic_test
 
 def examine_buildings_with_sunset(sequence: Iterator[int]) -> List[int]:
 
-    BuildingWithHeight = collections.namedtuple('BuildingWithHeight',
-                                                ('id', 'height'))
+    BuildingWithHeight = collections.namedtuple("BuildingWithHeight", ("id", "height"))
     candidates: List[BuildingWithHeight] = []
     for building_idx, building_height in enumerate(sequence):
         while candidates and building_height >= candidates[-1].height:
@@ -20,7 +19,9 @@ def examine_buildings_with_sunset_wrapper(sequence):
     return examine_buildings_with_sunset(iter(sequence))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('sunset_view.py', 'sunset_view.tsv',
-                                       examine_buildings_with_sunset))
+        generic_test.generic_test_main(
+            "sunset_view.py", "sunset_view.tsv", examine_buildings_with_sunset
+        )
+    )

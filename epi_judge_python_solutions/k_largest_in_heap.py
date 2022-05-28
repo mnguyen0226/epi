@@ -22,19 +22,19 @@ def k_largest_in_binary_heap(A: List[int], k: int) -> List[int]:
 
         left_child_idx = 2 * candidate_idx + 1
         if left_child_idx < len(A):
-            heapq.heappush(candidate_max_heap,
-                           (-A[left_child_idx], left_child_idx))
+            heapq.heappush(candidate_max_heap, (-A[left_child_idx], left_child_idx))
         right_child_idx = 2 * candidate_idx + 2
         if right_child_idx < len(A):
-            heapq.heappush(candidate_max_heap,
-                           (-A[right_child_idx], right_child_idx))
+            heapq.heappush(candidate_max_heap, (-A[right_child_idx], right_child_idx))
     return result
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            'k_largest_in_heap.py',
-            'k_largest_in_heap.tsv',
+            "k_largest_in_heap.py",
+            "k_largest_in_heap.tsv",
             k_largest_in_binary_heap,
-            comparator=test_utils.unordered_compare))
+            comparator=test_utils.unordered_compare,
+        )
+    )

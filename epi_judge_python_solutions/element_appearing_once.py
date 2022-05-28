@@ -12,7 +12,7 @@ def find_element_appears_once(A: List[int]) -> int:
             x >>= 1
 
     def handle_negative(n):
-        return n if n < 2**31 else n - 2**32
+        return n if n < 2 ** 31 else n - 2 ** 32
 
     # Any result greater than or equal to 2**31 must correspond to an negative
     # value.
@@ -45,8 +45,11 @@ def find_element_appears_once_alternative(A: List[int]) -> int:
     return ones
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('element_appearing_once.py',
-                                       'element_appearing_once.tsv',
-                                       find_element_appears_once))
+        generic_test.generic_test_main(
+            "element_appearing_once.py",
+            "element_appearing_once.tsv",
+            find_element_appears_once,
+        )
+    )

@@ -15,13 +15,19 @@ def smallest_nonconstructible_value(A: List[int]) -> int:
 
 
 def smallest_nonconstructible_value_pythonic(A: List[int]) -> int:
-    return functools.reduce(
-        lambda max_val, a: max_val +
-        (0 if a > max_val + 1 else a), sorted(A), 0) + 1
+    return (
+        functools.reduce(
+            lambda max_val, a: max_val + (0 if a > max_val + 1 else a), sorted(A), 0
+        )
+        + 1
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('smallest_nonconstructible_value.py',
-                                       'smallest_nonconstructible_value.tsv',
-                                       smallest_nonconstructible_value))
+        generic_test.generic_test_main(
+            "smallest_nonconstructible_value.py",
+            "smallest_nonconstructible_value.tsv",
+            smallest_nonconstructible_value,
+        )
+    )

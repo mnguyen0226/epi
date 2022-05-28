@@ -34,8 +34,11 @@ def binary_search_unknown_length(A: List[int], k: int) -> int:
     return -1  # Nothing matched k.
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('search_unknown_length_array.py',
-                                       'search_unknown_length_array.tsv',
-                                       binary_search_unknown_length))
+        generic_test.generic_test_main(
+            "search_unknown_length_array.py",
+            "search_unknown_length_array.tsv",
+            binary_search_unknown_length,
+        )
+    )

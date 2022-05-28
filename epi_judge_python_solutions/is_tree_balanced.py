@@ -7,7 +7,8 @@ from test_framework import generic_test
 def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
 
     BalancedStatusWithHeight = collections.namedtuple(
-        'BalancedStatusWithHeight', ('balanced', 'height'))
+        "BalancedStatusWithHeight", ("balanced", "height")
+    )
 
     # First value of the return value indicates if tree is balanced, and if
     # balanced the second value of the return value is the height of tree.
@@ -30,8 +31,9 @@ def is_balanced_binary_tree(tree: BinaryTreeNode) -> bool:
     return check_balanced(tree).balanced
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('is_tree_balanced.py',
-                                       'is_tree_balanced.tsv',
-                                       is_balanced_binary_tree))
+        generic_test.generic_test_main(
+            "is_tree_balanced.py", "is_tree_balanced.tsv", is_balanced_binary_tree
+        )
+    )

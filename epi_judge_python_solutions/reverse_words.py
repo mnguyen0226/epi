@@ -18,7 +18,7 @@ def reverse_words(s):
     start = 0
     while True:
         finish = start
-        while finish < len(s) and s[finish] != ' ':
+        while finish < len(s) and s[finish] != " ":
             finish += 1
         if finish == len(s):
             break
@@ -31,7 +31,7 @@ def reverse_words(s):
 
 # Pythonic solution, doesn't reverse in-place, may be used with strings
 def reverse_words_pythonic(s):
-    return ' '.join(reversed(s.split(' ')))
+    return " ".join(reversed(s.split(" ")))
 
 
 @enable_executor_hook
@@ -40,10 +40,12 @@ def reverse_words_wrapper(executor, s):
 
     executor.run(functools.partial(reverse_words, s_copy))
 
-    return ''.join(s_copy)
+    return "".join(s_copy)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('reverse_words.py', 'reverse_words.tsv',
-                                       reverse_words_wrapper))
+        generic_test.generic_test_main(
+            "reverse_words.py", "reverse_words.tsv", reverse_words_wrapper
+        )
+    )

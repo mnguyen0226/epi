@@ -11,7 +11,5 @@ def has_three_sum(A: List[int], t: int) -> bool:
     return any(has_two_sum(A, t - a) for a in A)
 
 
-if __name__ == '__main__':
-    exit(
-        generic_test.generic_test_main('three_sum.py', 'three_sum.tsv',
-                                       has_three_sum))
+if __name__ == "__main__":
+    exit(generic_test.generic_test_main("three_sum.py", "three_sum.tsv", has_three_sum))

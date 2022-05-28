@@ -15,13 +15,18 @@ def is_linked_list_a_palindrome(L: ListNode) -> bool:
     while second_half_iter and first_half_iter:
         if second_half_iter.data != first_half_iter.data:
             return False
-        second_half_iter, first_half_iter = (second_half_iter.next,
-                                             first_half_iter.next)
+        second_half_iter, first_half_iter = (
+            second_half_iter.next,
+            first_half_iter.next,
+        )
     return True
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('is_list_palindromic.py',
-                                       'is_list_palindromic.tsv',
-                                       is_linked_list_a_palindrome))
+        generic_test.generic_test_main(
+            "is_list_palindromic.py",
+            "is_list_palindromic.tsv",
+            is_linked_list_a_palindrome,
+        )
+    )

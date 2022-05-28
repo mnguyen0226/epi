@@ -19,7 +19,9 @@ def square_root(x: float) -> float:
     return left
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('real_square_root.py',
-                                       'real_square_root.tsv', square_root))
+        generic_test.generic_test_main(
+            "real_square_root.py", "real_square_root.tsv", square_root
+        )
+    )

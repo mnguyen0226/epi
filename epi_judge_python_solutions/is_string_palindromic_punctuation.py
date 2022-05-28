@@ -20,12 +20,18 @@ def is_palindrome(s: str) -> bool:
 def is_palindrome_pythonic(s):
     return all(
         a == b
-        for a, b in zip(map(str.lower, filter(str.isalnum, s)),
-                        map(str.lower, filter(str.isalnum, reversed(s)))))
+        for a, b in zip(
+            map(str.lower, filter(str.isalnum, s)),
+            map(str.lower, filter(str.isalnum, reversed(s))),
+        )
+    )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            'is_string_palindromic_punctuation.py',
-            'is_string_palindromic_punctuation.tsv', is_palindrome))
+            "is_string_palindromic_punctuation.py",
+            "is_string_palindromic_punctuation.tsv",
+            is_palindrome,
+        )
+    )

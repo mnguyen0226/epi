@@ -75,6 +75,25 @@ def dutch_flag_partition_2(pivot_index: int, A: List[int]) -> None:
     # S: O(1) because we did not use any additional ds for storing
 
 
+def dutch_flag_partition_3(pivot_index: int, A: List[int]) -> None:
+    L, R = 0, len(A) - 1
+    pivot_val = A[pivot_index]
+
+    for i in range(len(A)):
+        if A[i] < pivot_val:
+            # swap
+            A[L], A[i] = A[i], A[L]
+            L += 1
+
+    for i in reversed(range(len(A))):
+        if A[i] > pivot_val:
+            # swap
+            A[R], A[i] = A[i], A[R]
+            R -= 1
+
+    return A
+
+
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):
     count = [0, 0, 0]
@@ -82,7 +101,7 @@ def dutch_flag_partition_wrapper(executor, A, pivot_idx):
         count[x] += 1
     pivot = A[pivot_idx]
 
-    executor.run(functools.partial(dutch_flag_partition_2, pivot_idx, A))
+    executor.run(functools.partial(dutch_flag_partition_3, pivot_idx, A))
 
     i = 0
     while i < len(A) and A[i] < pivot:

@@ -20,8 +20,9 @@ def find_longest_subarray_less_equal_k(A: List[int], k: int) -> int:
 
     a = b = max_length = 0
     while a < len(A) and b < len(A):
-        min_curr_sum = (min_prefix_sum[b] -
-                        prefix_sum[a - 1] if a > 0 else min_prefix_sum[b])
+        min_curr_sum = (
+            min_prefix_sum[b] - prefix_sum[a - 1] if a > 0 else min_prefix_sum[b]
+        )
         if min_curr_sum <= k:
             curr_length = b - a + 1
             if curr_length > max_length:
@@ -32,9 +33,11 @@ def find_longest_subarray_less_equal_k(A: List[int], k: int) -> int:
     return max_length
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            'longest_subarray_with_sum_constraint.py',
-            'longest_subarray_with_sum_constraint.tsv',
-            find_longest_subarray_less_equal_k))
+            "longest_subarray_with_sum_constraint.py",
+            "longest_subarray_with_sum_constraint.tsv",
+            find_longest_subarray_less_equal_k,
+        )
+    )

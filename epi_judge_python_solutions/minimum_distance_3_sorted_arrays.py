@@ -6,8 +6,7 @@ import bintrees
 from test_framework import generic_test
 
 
-def find_closest_elements_in_sorted_arrays(sorted_arrays: List[List[int]]
-                                           ) -> int:
+def find_closest_elements_in_sorted_arrays(sorted_arrays: List[List[int]]) -> int:
 
     # Stores array iterators in each entry.
     iters = bintrees.RBTree()
@@ -17,7 +16,7 @@ def find_closest_elements_in_sorted_arrays(sorted_arrays: List[List[int]]
         if first_min is not None:
             iters.insert((first_min, idx), it)
 
-    min_distance_so_far = float('inf')
+    min_distance_so_far = float("inf")
     while True:
         min_value, min_idx = iters.min_key()
         max_value = iters.max_key()[0]
@@ -30,8 +29,11 @@ def find_closest_elements_in_sorted_arrays(sorted_arrays: List[List[int]]
         iters.insert((next_min, min_idx), it)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('minimum_distance_3_sorted_arrays.py',
-                                       'minimum_distance_3_sorted_arrays.tsv',
-                                       find_closest_elements_in_sorted_arrays))
+        generic_test.generic_test_main(
+            "minimum_distance_3_sorted_arrays.py",
+            "minimum_distance_3_sorted_arrays.tsv",
+            find_closest_elements_in_sorted_arrays,
+        )
+    )

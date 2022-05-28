@@ -12,7 +12,7 @@ def expression_synthesis(digits: List[int], target: int) -> bool:
             intermediate_operands.append(next(operand_it))
             # Evaluates '*' first.
             for oper in operators:
-                if oper == '*':
+                if oper == "*":
                     product = intermediate_operands[-1] * next(operand_it)
                     intermediate_operands[-1] = product
                 else:  # oper == '+'.
@@ -33,7 +33,7 @@ def expression_synthesis(digits: List[int], target: int) -> bool:
             return True
         # Tries multiplication operator '*'.
         operands.append(current_term)
-        operators.append('*')
+        operators.append("*")
         if directed_expression_synthesis(digits[1:], current_term=0):
             return True
         del operands[-1]
@@ -41,9 +41,10 @@ def expression_synthesis(digits: List[int], target: int) -> bool:
         # Tries addition operator '+'.
         operands.append(current_term)
         # First check feasibility of plus operator.
-        if target - evaluate() <= functools.reduce(lambda val, d: val * 10 + d,
-                                                   digits[1:], 0):
-            operators.append('+')
+        if target - evaluate() <= functools.reduce(
+            lambda val, d: val * 10 + d, digits[1:], 0
+        ):
+            operators.append("+")
             if directed_expression_synthesis(digits[1:], current_term=0):
                 return True
             del operators[-1]
@@ -55,8 +56,11 @@ def expression_synthesis(digits: List[int], target: int) -> bool:
     return directed_expression_synthesis(digits, current_term=0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main('insert_operators_in_string.py',
-                                       'insert_operators_in_string.tsv',
-                                       expression_synthesis))
+        generic_test.generic_test_main(
+            "insert_operators_in_string.py",
+            "insert_operators_in_string.tsv",
+            expression_synthesis,
+        )
+    )
