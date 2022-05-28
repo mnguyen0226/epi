@@ -33,6 +33,7 @@ def search_entry_equal_to_its_index(A: List[int]) -> int:
 
     return -1
 
+
 # T: O(logn)
 # S: O(1)
 
