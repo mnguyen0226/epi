@@ -60,9 +60,37 @@ def plus_one2(A: List[int]) -> List[int]:
     # S: O(1) because we did not use any additional ds for storing data
 
 
+def plus_one3(A: List[int]) -> List[int]:
+    remember_one = True
+
+    # reverse traverse
+    for i in reversed(range(len(A))):
+        # if not the front number
+        if i != 0:
+            if A[i] != 9:
+                A[i] += remember_one
+                break
+            elif A[i] == 9:
+                A[i] = 0
+
+        # if is front number
+        elif i == 0:
+            if A[i] != 9:
+                A[i] += remember_one
+                break
+            elif A[i] == 9:
+                A[i] = 0
+                A.insert(0, 1)  # position, value
+    return A
+
+
+# T: O(n)
+# S: O(1)
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one2
+            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one3
         )
     )
