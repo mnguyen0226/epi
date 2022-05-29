@@ -48,12 +48,53 @@ def is_letter_constructible_from_magazine(letter_text: str, magazine_text: str) 
 # T: O(n) because we traverse through character in string
 # S: O(1) because we use hashmap
 
+# Another way to do is use a single hash table and start deleting
+def is_letter_constructible_from_magazine2(
+    letter_text: str, magazine_text: str
+) -> bool:
 
+    # replace space
+    letter_text = letter_text.replace(" ", "")
+    magazine_text = magazine_text.replace(" ", "")
+
+    hashmap = {}
+
+    # store character in hashmap
+    for c in letter_text:
+        if c not in hashmap:
+            hashmap[c] = 1
+        else:
+            hashmap[c] += 1
+
+    # go throught the magazine
+    for c in magazine_text:
+        if c in hashmap:
+            hashmap[c] -= 1
+        else:
+            continue
+
+    arr = []
+
+    # go through the hashmap annd get char, count pair
+    for _ in range(len(hashmap)):
+        char, count = hashmap.popitem()
+
+        # negative means over use
+        if count <= 0:
+            arr.append(True)
+        else:
+            arr.append(False)
+
+    return all(arr)
+
+
+# T: O(n) because we traverse through character in string
+# S: O(1) because we use hashmap
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "is_anonymous_letter_constructible.py",
             "is_anonymous_letter_constructible.tsv",
-            is_letter_constructible_from_magazine,
+            is_letter_constructible_from_magazine2,
         )
     )
