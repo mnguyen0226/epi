@@ -38,8 +38,9 @@ def intersect_two_sorted_arrays_improved(A: List[int], B: List[int]) -> List[int
             i += 1
         else:
             j += 1
-            
+
     return result
+
 
 # T: O(n+m) linear time worst case with m n are length of the two array
 # S: O(n) because of using array
