@@ -1,3 +1,4 @@
+from cgitb import small
 import itertools
 from typing import Iterator, List
 import heapq
@@ -27,6 +28,36 @@ def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int
         results.append(smallest_val)
 
     return results
+
+
+# 6/2/2022
+import heapq
+
+
+def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int]:
+    # k is the width, thus we first take k+1 nums in the heap
+    min_heap = []
+    result = []
+
+    for num in itertools.islice(sequence, k + 1):
+        heapq.heappush(min_heap, num)
+
+    # iterate through the rest of sequence
+    for num in sequence:
+        smallest_num_in_heap = heapq.heappop(min_heap)
+        result.append(smallest_num_in_heap)
+        heapq.heappush(min_heap, num)
+
+    # pop the rest of min heap out
+    while len(min_heap) != 0:
+        smallest_num_in_heap = heapq.heappop(min_heap)
+        result.append(smallest_num_in_heap)
+
+    return result
+
+
+# T: O (nlogk) with n is the number of element in the array and k is the size of the heap
+# S: O (logk) with k is the number of element stored in the heap
 
 
 def sort_approximately_sorted_array_wrapper(sequence, k):
