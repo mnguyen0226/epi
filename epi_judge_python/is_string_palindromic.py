@@ -21,9 +21,16 @@ def is_palindromic2(s: str) -> bool:
     # S: O(1) since we did not use any ds for storage
 
 
+def is_palindromic3(s: str) -> bool:
+    return all([True if s[i] == s[~i] else False for i in range(len(s) // 2)])
+
+
+# T: O(n) because we iterate through half of the string
+# S: O(1) because we use no extra space
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "is_string_palindromic.py", "is_string_palindromic.tsv", is_palindromic2,
+            "is_string_palindromic.py", "is_string_palindromic.tsv", is_palindromic3,
         )
     )
