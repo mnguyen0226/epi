@@ -47,9 +47,26 @@ def delete_duplicates2(A: List[int]) -> int:
     return p + 1
 
 
+# 6/2/2022
+def delete_duplicates3(A: List[int]) -> int:
+    # return the number of unique values
+    p = 0  # placeholder
+
+    for i in range(len(A)):
+        if A[p] != A[i]:
+            p += 1
+            A[p] = A[i]
+
+    return p + 1
+
+
+# T: O(n) since we iterate through all elemenet in array
+# S: O(1) since we use pointers only
+
+
 @enable_executor_hook
 def delete_duplicates_wrapper(executor, A):
-    idx = executor.run(functools.partial(delete_duplicates2, A))
+    idx = executor.run(functools.partial(delete_duplicates3, A))
     return A[:idx]
 
 
