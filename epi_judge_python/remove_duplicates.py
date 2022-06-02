@@ -23,9 +23,9 @@ def eliminate_duplicate(A: List[Name]) -> None:
     # sort by first name
     A.sort(key=lambda name: name.first_name)
 
-    i = 0 # iterator
-    p = 0 # placeholder of distince value
-        
+    i = 0  # iterator
+    p = 0  # placeholder of distince value
+
     while i != len(A):
         if A[i].first_name != A[p].first_name:
             p += 1
@@ -33,9 +33,10 @@ def eliminate_duplicate(A: List[Name]) -> None:
         i += 1
 
     # the ffu
-    del A[p+1:] # this is correct
+    del A[p + 1 :]  # this is correct
 
-    return 
+    return
+
 
 # T: O(nlogn) due to sort()
 # S: O(1) since we did not use any additional data structure
