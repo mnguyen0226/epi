@@ -52,7 +52,34 @@ def evaluate(expression: str) -> int:
     # S: O(1) because we don't use any additional data structure to store
 
 
+def evaluate2(expression: str) -> int:
+    arr_expression = expression.split(",")
+    s = []
+
+    for l in arr_expression:
+        if l == "+":
+            a, b = s.pop(), s.pop()
+            s.append(a + b)
+        elif l == "-":
+            a, b = s.pop(), s.pop()
+            s.append(b - a)
+        elif l == "*":
+            a, b = s.pop(), s.pop()
+            s.append(a * b)
+        elif l == "/":
+            a, b = s.pop(), s.pop()
+            s.append(b // a)
+        else:
+            s.append(int(l))
+
+    return s[-1]
+
+
+# T: O(n) with n is the expression in the string
+# S: O(n) with n is the size of the stack
+
+
 if __name__ == "__main__":
     exit(
-        generic_test.generic_test_main("evaluate_rpn.py", "evaluate_rpn.tsv", evaluate)
+        generic_test.generic_test_main("evaluate_rpn.py", "evaluate_rpn.tsv", evaluate2)
     )
