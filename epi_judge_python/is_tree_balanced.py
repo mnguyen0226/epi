@@ -57,9 +57,35 @@ def is_balanced_binary_tree2(tree: BinaryTreeNode) -> bool:
     # S: O(h) we use recursion and the calll stack corresponds to a sequence of calls from the root throught the unique path the the current node, the stack height is therefore bounded by the height of tree
 
 
+def is_balanced_binary_tree3(tree: BinaryTreeNode) -> bool:
+    def check_balance_height(tree: BinaryTreeNode):
+        if tree is None:
+            return (True, 0)  # if there is no node then balance and height is 0
+
+        # check balance
+        balance_left, height_left = check_balance_height(tree.left)
+        balance_right, height_right = check_balance_height(tree.right)
+
+        # update height
+        new_height = max(height_left, height_right) + 1
+        new_balance = (
+            True
+            if (abs(height_left - height_right) <= 1) and balance_left and balance_right
+            else False
+        )
+
+        return (new_balance, new_height)
+
+    return check_balance_height(tree)[0]
+
+
+# T: O(h) with h is the height of the tree
+# S: O(h) since the recursion stack has the depth proportional to the height of the tree
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "is_tree_balanced.py", "is_tree_balanced.tsv", is_balanced_binary_tree
+            "is_tree_balanced.py", "is_tree_balanced.tsv", is_balanced_binary_tree3
         )
     )

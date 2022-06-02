@@ -170,6 +170,49 @@ def string_to_int2(s: str) -> int:
     # S: O(1)
 
 
+# 6/2/2022
+def int_to_string3(x: int) -> str:
+    if x == 0:
+        return "0"
+
+    str_num = ""
+    is_neg = False
+
+    if x < 0:
+        is_neg = True
+
+    x = abs(x)
+
+    while x:
+        remainder = x % 10
+        str_num = str_num + chr(ord("0") + remainder)
+        x = x // 10  # get rid of the remainder
+
+    if is_neg:
+        str_num += "-"
+
+    return str_num[::-1]
+
+
+import string
+
+
+def string_to_int3(s: str) -> int:
+    int_num = 0
+    has_sign = 0
+
+    if s[0] == "+" or s[0] == "-":
+        has_sign = 1
+
+    for i in range(has_sign, len(s)):
+        int_num = int_num * 10 + string.digits.index(s[i])
+
+    if has_sign == 1 and s[0] == "-":
+        int_num = -int_num
+
+    return int_num
+
+
 # def int_to_string(x: int) -> str:
 #     return None
 # def string_to_int(s: str) -> int:
@@ -177,9 +220,9 @@ def string_to_int2(s: str) -> int:
 
 
 def wrapper(x, s):
-    if int(int_to_string2(x)) != x:
+    if int(int_to_string3(x)) != x:
         raise TestFailure("Int to string conversion failed")
-    if string_to_int2(s) != x:
+    if string_to_int3(s) != x:
         raise TestFailure("String to int conversion failed")
 
 
