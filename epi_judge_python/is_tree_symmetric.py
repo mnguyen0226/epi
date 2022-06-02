@@ -88,8 +88,8 @@ def is_symmetric3(tree: BinaryTreeNode) -> bool:
     return check_symmetric(tree)[0]
 
 
-# T: O(h) with h is the height of the tree
-# S: O(n) since the recursion stack is proportion to the height of the tree
+# T: O(n) with h is the height of the tree
+# S: O(h) since the recursion stack is proportion to the height of the tree
 
 if __name__ == "__main__":
     exit(
