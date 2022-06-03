@@ -36,8 +36,26 @@ def find_first_greater_than_k(tree: BstNode, k: int) -> Optional[BstNode]:
     # S: O(n) for array
 
 
+# What about we don't need to store in array. We use
+def find_first_greater_than_k_optimized(tree: BstNode, k: int) -> Optional[BstNode]:
+    curr_node, smallest_larger_than_k = tree, None
+
+    while curr_node:
+        if curr_node.data > k:
+            smallest_larger_than_k = curr_node
+            curr_node = curr_node.left
+        else:
+            curr_node = curr_node.right
+
+    return smallest_larger_than_k
+
+
+# T: O(h) with h is the height of the tree, not n since we delete half the tree everytime
+# S: O(1) since no data structure to store the data
+
+
 def find_first_greater_than_k_wrapper(tree, k):
-    result = find_first_greater_than_k(tree, k)
+    result = find_first_greater_than_k_optimized(tree, k)
     return result.data if result else -1
 
 
