@@ -56,9 +56,25 @@ def is_binary_tree_bst(tree: BinaryTreeNode) -> bool:
 # T: O(h) with h is the height of the tree
 # S: O(n) > O(h) since we use array to store the element, this is larger than the recursion call-stack
 
+
+def is_binary_tree_bst_optmize(tree: BinaryTreeNode) -> bool:
+    def DFS(tree: BinaryTreeNode, left_bound, right_bound):
+        if tree is None:
+            return True
+
+        if not (tree.data <= right_bound and tree.data >= left_bound):
+            return False
+
+        return DFS(tree.right, tree.data, right_bound) and DFS(
+            tree.left, left_bound, tree.data
+        )
+
+    return DFS(tree, float("-inf"), float("inf"))
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "is_tree_a_bst.py", "is_tree_a_bst.tsv", is_binary_tree_bst
+            "is_tree_a_bst.py", "is_tree_a_bst.tsv", is_binary_tree_bst_optmize
         )
     )
