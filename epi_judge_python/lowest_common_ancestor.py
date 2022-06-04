@@ -50,13 +50,13 @@ def lca2(
     if tree is None:
         return None
 
-    # searching step
+    # searching step, there only root
     if tree.data == node0.data or tree.data == node1.data:
         return tree
 
-    # visit left
-    lst = lca(tree.left, node0, node1)
-    rst = lca(tree.right, node0, node1)
+    # visit left and right
+    lst = lca2(tree.left, node0, node1)
+    rst = lca2(tree.right, node0, node1)
 
     if lst and rst:
         return tree
@@ -74,7 +74,7 @@ def lca_wrapper(executor, tree, key1, key2):
     strip_parent_link(tree)
     result = executor.run(
         functools.partial(
-            lca, tree, must_find_node(tree, key1), must_find_node(tree, key2)
+            lca2, tree, must_find_node(tree, key1), must_find_node(tree, key2)
         )
     )
 
