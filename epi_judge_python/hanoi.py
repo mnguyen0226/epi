@@ -7,10 +7,28 @@ from test_framework.test_utils import enable_executor_hook
 
 NUM_PEGS = 3
 
-
+# 6/4/2022
+# We will use recursion. Returning the calling stack
 def compute_tower_hanoi(num_rings: int) -> List[List[int]]:
-    # TODO - you fill in here.
-    return []
+    moving_steps = []
+
+    def recursive_hanoi(num_rings, moving_steps, peg_start, peg_end, peg_middle):
+        if num_rings == 1:
+            # move the ring from peg 1 to peg 3
+            moving_steps.append([peg_start, peg_end])
+        else:
+            recursive_hanoi(num_rings - 1, moving_steps, peg_start, peg_middle, peg_end)
+            moving_steps.append([peg_start, peg_end])
+            recursive_hanoi(num_rings - 1, moving_steps, peg_middle, peg_end, peg_start)
+
+        return moving_steps
+
+    return recursive_hanoi(num_rings, moving_steps, 0, 2, 1)
+
+
+# https://www.youtube.com/watch?v=VC4V67q2kEk&ab_channel=BasicsStrong
+# T: O(2^n) since there are 2 recursive call per call, we got 2 > 2^2 > 2^3.....
+# S: O(n) due to the call stack proprotional to the height of the tree, the height of the tree is equal to the number of disk
 
 
 @enable_executor_hook
