@@ -35,7 +35,13 @@ def phone_mnemonic(phone_number: str) -> List[str]:
         char_list = hashmap[phone_number[index]]
         for c in char_list:
             # note that don't update the current string here but update at the recursive time
-            backtracking(index + 1, curr_string + c)
+            curr_string = curr_string + c
+            index = index + 1
+            backtracking(index, curr_string)
+
+            # for backtracking, you need to clean up
+            curr_string = curr_string[:-1]
+            index = index - 1
 
     backtracking(0, "")
 

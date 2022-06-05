@@ -2,10 +2,20 @@ from typing import List
 
 from test_framework import generic_test
 
+# 6/5/2022
+# Apply backtracking via bruteforce
+
+def string_to_index(string: str):
+    return 0
+
 
 def n_queens(n: int) -> List[List[int]]:
-    # TODO - you fill in here.
-    return []
+    res = []
+    
+    
+    
+    def backtracking(curr_s)
+    
 
 
 def comp(a, b):
