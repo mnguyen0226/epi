@@ -18,8 +18,8 @@ def permutations(A: List[int]) -> List[List[int]]:
         for i in range(len(rest_list)):
             curr_A.append(rest_list[i])
             index += 1
-            
-            copy_rest_list = rest_list.copy() # this is for recovery
+
+            copy_rest_list = rest_list.copy()  # this is for recovery
             rest_list = rest_list[:i] + rest_list[i + 1 :]
 
             backtracking(index, curr_A, rest_list)
