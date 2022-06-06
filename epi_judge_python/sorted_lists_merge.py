@@ -62,12 +62,40 @@ def merge_two_sorted_lists2(
 
 
 # T: O(n)
-# S: O(n) because we use additional head node to store values
+# S: O(1) because linked list don't take space and we reuse existing nodes
 
+
+def merge_two_sorted_lists3(
+    L1: Optional[ListNode], L2: Optional[ListNode]
+) -> Optional[ListNode]:
+
+    # create a dummy list
+    dummy_head = tail = ListNode(0)
+
+    # compare and attach accordingly
+    while L1 and L2:
+        if L1.data >= L2.data:
+            tail.next = L2
+            L2 = L2.next
+        else:
+            tail.next = L1
+            L1 = L1.next
+        tail = tail.next
+
+    # attach the rest
+    if L1:
+        tail.next = L1
+    if L2:
+        tail.next = L2
+
+    return dummy_head.next
+
+# T: O(n) since we traverse two linked list
+# S: O(1) because linked list don't take space and we reuse existing nodes
 
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "sorted_lists_merge.py", "sorted_lists_merge.tsv", merge_two_sorted_lists2
+            "sorted_lists_merge.py", "sorted_lists_merge.tsv", merge_two_sorted_lists3
         )
     )
