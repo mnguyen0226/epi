@@ -90,6 +90,7 @@ def merge_two_sorted_lists3(
 
     return dummy_head.next
 
+
 # T: O(n) since we traverse two linked list
 # S: O(1) because linked list don't take space and we reuse existing nodes
 

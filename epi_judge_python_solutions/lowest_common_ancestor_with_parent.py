@@ -32,6 +32,9 @@ def lca(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode
         node0, node1 = node0.parent, node1.parent
     return node0
 
+def lca(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    
+
 
 @enable_executor_hook
 def lca_wrapper(executor, tree, node0, node1):
