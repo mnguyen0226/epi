@@ -32,14 +32,53 @@ def lca(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode
         node0, node1 = node0.parent, node1.parent
     return node0
 
-def lca(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+# 6/7/2022
+def lca2(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    hashmap = set()
     
+    # traverse from node0 to root
+    while node0.parent:
+        hashmap.add(node0.data)
+        node0 = node0.parent
+        
+    # traverse from node1 to root and check hashmap
+    while node1.parent:
+        if node1.data in hashmap:
+            return node1
+        
+        node1 = node1.parent
+    
+    return None
 
+# T: O(n) with n is the max number of node from node0/node1 to root
+# S: O(n) since we use hashmap
 
+def lca2_optimize_space(node0: BinaryTreeNode, node1: BinaryTreeNode) -> Optional[BinaryTreeNode]:
+    # iterate both node at the same time
+    iter_node0 = node0
+    iter_node1 = node1
+    
+    while iter_node0.data != iter_node1.data:
+        # we did this first in case either start at the root
+        if iter_node0 is None:
+            iter_node0 = node1
+        if iter_node1 is None:
+            iter_node1 = node0
+        
+        # after they are valid, check for their values
+        if iter_node1.data == iter_node0.data:
+            return iter_node0
+        
+        # update the node
+        node0 = node0.parent
+        node1 = node1.parent
+    
+    return None
+        
 @enable_executor_hook
 def lca_wrapper(executor, tree, node0, node1):
     result = executor.run(
-        functools.partial(lca, must_find_node(tree, node0), must_find_node(tree, node1))
+        functools.partial(lca2_optimize_space, must_find_node(tree, node0), must_find_node(tree, node1))
     )
 
     if result is None:
