@@ -52,9 +52,32 @@ def inorder_traversal_iterative(tree: BinaryTreeNode) -> List[int]:
 # S: O(n) due to using the stack
 
 
+# 6/8/2022
+# Apply the stack
+def inorder_traversal_iterative2(tree: BinaryTreeNode) -> List[int]:
+    stack = []
+    results = []
+
+    while stack or tree:
+
+        # keep adding to the left
+        while tree:
+            stack.append(tree)
+            tree = tree.left
+
+        # pop and append to the result list
+        tree = stack.pop()
+        results.append(tree.data)
+
+        # append the right node to stack
+        tree = tree.right
+
+    return results
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "tree_inorder.py", "tree_inorder.tsv", inorder_traversal_iterative
+            "tree_inorder.py", "tree_inorder.tsv", inorder_traversal_iterative2
         )
     )
