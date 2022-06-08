@@ -23,7 +23,8 @@ def has_path_sum2(tree: BinaryTreeNode, remaining_weight: int) -> bool:
         # there is a node, we update the remaining weight
         remaining_weight = remaining_weight - tree.data
     
-        if remaining_weight == 0:
+        # check leaf node
+        if remaining_weight == 0 and tree.left is None and tree.right is None:
             return True
         
         return recursion(tree.left, remaining_weight) or recursion(tree.right, remaining_weight)
