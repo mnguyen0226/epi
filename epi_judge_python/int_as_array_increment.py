@@ -87,10 +87,37 @@ def plus_one3(A: List[int]) -> List[int]:
 # T: O(n)
 # S: O(1)
 
+# 6/9/2022
+def plus_one4(A: List[int]) -> List[int]:
+    if len(A) == 0:
+        return A
+
+    for i in reversed(range(len(A))):
+
+        # if this is not the last number
+        if i != 0:
+            if A[i] == 9:
+                A[i] = 0
+            elif A[i] != 9:
+                A[i] += 1
+                break
+        # if this is the last number
+        if i == 0:
+            if A[i] == 9:
+                A[i] = 0
+                A.insert(0, 1)  # insert at position 0 value 1
+            elif A[i] != 9:
+                A[i] += 1
+
+    return A
+
+
+# T: O(n) because we traverse through all elements in the array
+# S: O(1) because we manipulate the array's elements in the array
 
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one3
+            "int_as_array_increment.py", "int_as_array_increment.tsv", plus_one4
         )
     )
