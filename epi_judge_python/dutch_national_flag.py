@@ -1,4 +1,6 @@
+from audioop import reverse
 import functools
+from turtle import hideturtle
 from typing import List
 
 from test_framework import generic_test
@@ -97,6 +99,29 @@ def dutch_flag_partition_3(pivot_index: int, A: List[int]) -> None:
     # S: O(1)
 
 
+def dutch_flag_partition_4(pivot_index: int, A: List[int]) -> None:
+    p_val = A[pivot_index]
+
+    # get 2 placeholders for lower and higher index
+    ph_lower, ph_higher = 0, len(A) - 1
+
+    for i in range(len(A)):
+        if A[i] < p_val:
+            A[ph_lower], A[i] = A[i], A[ph_lower]
+            ph_lower += 1
+
+    for i in reversed(range(len(A))):
+        if A[i] > p_val:
+            A[ph_higher], A[i] = A[i], A[ph_higher]
+            ph_higher -= 1
+
+    return
+
+
+# T: O(n) since we pass through the array twice
+# S: O(1) because we just manipullate the values directly
+
+
 @enable_executor_hook
 def dutch_flag_partition_wrapper(executor, A, pivot_idx):
     count = [0, 0, 0]
@@ -104,7 +129,7 @@ def dutch_flag_partition_wrapper(executor, A, pivot_idx):
         count[x] += 1
     pivot = A[pivot_idx]
 
-    executor.run(functools.partial(dutch_flag_partition_3, pivot_idx, A))
+    executor.run(functools.partial(dutch_flag_partition_4, pivot_idx, A))
 
     i = 0
     while i < len(A) and A[i] < pivot:

@@ -111,9 +111,14 @@ def merge_sorted_arrays3(sorted_arrays: List[List[int]]) -> List[int]:
     return results
 
 
+def merge_sorted_arrays_4(sorted_arrays: List[List[int]]) -> List[int]:
+
+    return None
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "sorted_arrays_merge.py", "sorted_arrays_merge.tsv", merge_sorted_arrays3
+            "sorted_arrays_merge.py", "sorted_arrays_merge.tsv", merge_sorted_arrays_4
         )
     )
