@@ -110,10 +110,44 @@ def merge_sorted_arrays3(sorted_arrays: List[List[int]]) -> List[int]:
 
     return results
 
+    # T: O(kn * klogn) which is slower than O(n). Sorted all elements in each array. The priority queue (min heap) will have O(logn) which is a bug improvement
+    # S: O(n) because we use array to store elements in other array
+
+
+# 6/9/2022
+import heapq
+
 
 def merge_sorted_arrays_4(sorted_arrays: List[List[int]]) -> List[int]:
+    result = []
+    min_heap = []
+    iter_list = []
 
-    return None
+    # create an iterator for each array
+    for i in range(len(sorted_arrays)):
+        iter_list.append(iter(sorted_arrays[i]))
+
+    # append the first k values of the database, add the (values, iter, index oof sorted_arrays) for retrieval
+    for i in range(len(iter_list)):
+        first_value = next(iter_list[i], None)  # return None when there is nothing
+        if first_value is not None:
+            heapq.heappush(min_heap, (first_value, i))
+
+    while min_heap:
+        # pop the smallest values in the heap
+        (smallest_value, smallest_value_iter_index) = heapq.heappop(min_heap)
+        result.append(smallest_value)
+
+        # get the next value of the current iterator
+        next_smallest_value = next(iter_list[smallest_value_iter_index], None)
+
+        if next_smallest_value is not None:
+            heapq.heappush(min_heap, (next_smallest_value, smallest_value_iter_index))
+
+    return result
+
+    # T: O(kn * klogn) which is slower than O(n). Sorted all elements in each array. The priority queue (min heap) will have O(logn) which is a big improvement
+    # S: O(n) because we use array to store elements in other array
 
 
 if __name__ == "__main__":
