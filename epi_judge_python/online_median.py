@@ -80,7 +80,7 @@ def online_median2(sequence: Iterator[int]) -> List[float]:
 
 
 # T: O(nlogn) with n is the number of element in the sequence
-# S: O(logn) with n is thee number of element in the sequence
+# S: O(n) since array needs inputs
 
 
 def online_median_wrapper(sequence):
