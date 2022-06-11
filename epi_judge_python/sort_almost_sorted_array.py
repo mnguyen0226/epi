@@ -90,8 +90,8 @@ def sort_approximately_sorted_array3(sequence: Iterator[int], k: int) -> List[in
     return result
 
 
-# T: O(klogn) with k is the size of the heap, logn is the time to insert or remove from the heap
-# S: O(k), except for result - O(n), with k is the size of the heap
+# T: O (nlogk) with n is the number of element in the array and k is the size of the heap
+# S: O (logk) with k is the number of element stored in the heap
 
 
 def sort_approximately_sorted_array_wrapper(sequence, k):
