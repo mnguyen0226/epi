@@ -85,10 +85,53 @@ def comp(expected_output, output):
     )
 
 
+# 6/10/2022
+# We will use the max-heap to store k star and popout the furthest star until we go through the interator
+
+import heapq
+
+
+def find_closest_k_stars_2(stars: Iterator[Star], k: int) -> List[Star]:
+    max_heap = []
+    result = []
+
+    # add the first k stars' distance to the max-heap
+    for _ in range(k):
+        star = next(stars, None)
+
+        # calculate the distance
+        if star is not None:
+            dis = star.distance
+
+            # add to max_heap
+            heapq.heappush(max_heap, (-dis, star))
+
+    # go through the array and push first then pop, else we will miss 1 stars
+    while True:
+        # get the next star
+        next_star = next(stars, None)
+
+        if next_star is not None:
+            dis = next_star.distance
+            heapq.heappushpop(max_heap, (-dis, next_star))
+        else:
+            break
+
+    # collect the closest stars
+    for tup in max_heap:
+        result.append(tup[1])
+
+    return result
+
+
+# T: O(nlogk) with n is the size of stars, and k is the size of the heap
+# S: O(logk) with k is the size of the heap
+
+
 @enable_executor_hook
 def find_closest_k_stars_wrapper(executor, stars, k):
     stars = [Star(*a) for a in stars]
-    return executor.run(functools.partial(find_closest_k_stars_cleaner, iter(stars), k))
+    return executor.run(functools.partial(find_closest_k_stars_2, iter(stars), k))
 
 
 if __name__ == "__main__":
