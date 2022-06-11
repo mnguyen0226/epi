@@ -38,9 +38,29 @@ def search_entry_equal_to_its_index(A: List[int]) -> int:
 # S: O(1)
 
 
+def search_entry_equal_to_its_index2(A: List[int]) -> int:
+    L, R = 0, len(A) - 1
+    found = -1
+    while L <= R:
+        M = L + (R - L) // 2
+
+        if A[M] > M:
+            R = M - 1
+        elif A[M] < M:
+            L = M + 1
+        else:
+            found = M
+            break
+    return found
+
+
+# T: O(logn) due to binary search
+# S: O(1)
+
+
 @enable_executor_hook
 def search_entry_equal_to_its_index_wrapper(executor, A):
-    result = executor.run(functools.partial(search_entry_equal_to_its_index, A))
+    result = executor.run(functools.partial(search_entry_equal_to_its_index2, A))
     if result != -1:
         if A[result] != result:
             raise TestFailure("Entry does not equal to its index")

@@ -73,8 +73,9 @@ def search_first_of_k3(A: List[int], k: int) -> int:
             R = M - 1
         else:
             found = M
-            R = M - 1 
+            R = M - 1
     return found
+
 
 # T: O(logn) because we cut half of the number everytime
 # S: O(1) since we use the elements in the array only
