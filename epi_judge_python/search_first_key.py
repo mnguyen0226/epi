@@ -1,7 +1,5 @@
 from typing import List
 
-from jmespath import search
-
 from test_framework import generic_test
 
 # 5/18/2022
@@ -60,10 +58,30 @@ def search_first_of_k2(A: List[int], k: int) -> int:
 # T: O(logn) due to binary search
 # S: O(1) due to not using any data structure to store space
 
+# 6/11/2022
+def search_first_of_k3(A: List[int], k: int) -> int:
+    found = -1
+
+    L, R = 0, len(A) - 1
+
+    while L <= R:
+        M = L + (R - L) // 2
+
+        if A[M] < k:
+            L = M + 1
+        elif A[M] > k:
+            R = M - 1
+        else:
+            found = M
+            R = M - 1 
+    return found
+
+# T: O(logn) because we cut half of the number everytime
+# S: O(1) since we use the elements in the array only
 
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "search_first_key.py", "search_first_key.tsv", search_first_of_k2
+            "search_first_key.py", "search_first_key.tsv", search_first_of_k3
         )
     )
