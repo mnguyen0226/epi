@@ -2,6 +2,8 @@ from cgitb import small
 import itertools
 from typing import Iterator, List
 import heapq
+
+from sympy import Min
 from test_framework import generic_test
 
 # 5/25/2022
@@ -34,7 +36,7 @@ def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int
 import heapq
 
 
-def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int]:
+def sort_approximately_sorted_array2(sequence: Iterator[int], k: int) -> List[int]:
     # k is the width, thus we first take k+1 nums in the heap
     min_heap = []
     result = []
@@ -59,9 +61,41 @@ def sort_approximately_sorted_array(sequence: Iterator[int], k: int) -> List[int
 # T: O (nlogk) with n is the number of element in the array and k is the size of the heap
 # S: O (logk) with k is the number of element stored in the heap
 
+import heapq
+
+
+def sort_approximately_sorted_array3(sequence: Iterator[int], k: int) -> List[int]:
+    result = []
+    min_heap = []
+
+    # add the first k+1 number in the min heap
+    for _ in range(k + 1):
+        value = next(sequence, None)
+        if value is not None:
+            heapq.heappush(min_heap, value)
+
+    # go through till the heap is empty
+    while min_heap:
+        # get the smallest number
+        smallest_value = heapq.heappop(min_heap)
+        result.append(smallest_value)
+
+        # get the next number in the sequence
+        next_value = next(sequence, None)
+
+        # add the new number to the heap.
+        if next_value is not None:
+            heapq.heappush(min_heap, next_value)
+
+    return result
+
+
+# T: O(klogn) with k is the size of the heap, logn is the time to insert or remove from the heap
+# S: O(k), except for result - O(n), with k is the size of the heap
+
 
 def sort_approximately_sorted_array_wrapper(sequence, k):
-    return sort_approximately_sorted_array(iter(sequence), k)
+    return sort_approximately_sorted_array3(iter(sequence), k)
 
 
 if __name__ == "__main__":
