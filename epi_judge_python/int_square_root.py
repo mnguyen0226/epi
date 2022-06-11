@@ -37,9 +37,31 @@ def square_root2(k: int) -> int:
 # T: O(logn)
 # S: O(1)
 
+# 6/11/2022
+def square_root3(k: int) -> int:
+    found_value = -1
+    L, R = 0, k
+
+    while L <= R:
+        M = L + (R - L) // 2
+
+        if M ** 2 > k:
+            R = M - 1
+        elif M ** 2 <= k:
+            # we update here because we try to find the largest value that can square-root <= k
+            found_value = max(found_value, M)
+            L = M + 1
+
+    return found_value
+
+
+# T: O(logn)
+# S: O(1)
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
-            "int_square_root.py", "int_square_root.tsv", square_root2
+            "int_square_root.py", "int_square_root.tsv", square_root3
         )
     )
