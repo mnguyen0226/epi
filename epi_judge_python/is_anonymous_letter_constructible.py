@@ -90,11 +90,56 @@ def is_letter_constructible_from_magazine2(
 
 # T: O(n) because we traverse through character in string
 # S: O(1) because we use hashmap
+
+# 6/11/2022
+# Store both the letters and the magazine to the hashmap. Then compare the hashmap
+def is_letter_constructible_from_magazine3(
+    letter_text: str, magazine_text: str
+) -> bool:
+
+    hashmap_letter = {}
+    hashmap_magazine = {}
+
+    # remove whitespace in character and magazine
+    letter_text = letter_text.replace(" ", "")
+    magazine_text = magazine_text.replace(" ", "")
+
+    # store character in letter
+    for char in letter_text:
+        if char not in hashmap_letter:
+            hashmap_letter[char] = 0
+        else:
+            hashmap_letter[char] += 1
+
+    # store character in magazine
+    for char in magazine_text:
+        if char not in hashmap_magazine:
+            hashmap_magazine[char] = 0
+        else:
+            hashmap_magazine[char] += 1
+
+    # compare the hashmap
+    if len(hashmap_magazine) < len(hashmap_letter):
+        return False
+
+    # compare the key and the value of the key
+    for key in hashmap_letter:
+        if key not in hashmap_magazine:
+            return False
+        if hashmap_letter[key] > hashmap_magazine[key]:
+            return False
+
+    return True
+
+
+# T: O(n) with n is the average length of the magazine
+# S: O(n) with n is the length of the hashmap
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "is_anonymous_letter_constructible.py",
             "is_anonymous_letter_constructible.tsv",
-            is_letter_constructible_from_magazine2,
+            is_letter_constructible_from_magazine3,
         )
     )
