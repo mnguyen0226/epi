@@ -60,7 +60,7 @@ def find_anagrams2(dictionary: List[str]) -> List[List[str]]:
 
 
 # T: O(m.n) with m is the number words in dictionary[] and n is the average length of each words
-# S: O(m) with m is the number of words in the dictionary[]
+# S: O(m.n) with m is the number words in dictionary[] and n is the average length of each words
 
 
 if __name__ == "__main__":
