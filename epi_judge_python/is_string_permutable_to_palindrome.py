@@ -1,3 +1,4 @@
+from attr import has
 from test_framework import generic_test
 
 # 5/29/2022
@@ -45,11 +46,29 @@ def can_form_palindrome(s: str) -> bool:
     return sum([1 for x in hashmap if hashmap[x] % 2 == 1]) <= 1
 
 
+# 6/11/2022
+# add everything to the hashmap, if there is not then add, if there is then remove
+def can_form_palindrome2(s: str) -> bool:
+    hashmap = set()
+
+    for char in s:
+        if char not in hashmap:
+            hashmap.add(char)
+        elif char in hashmap:
+            hashmap.remove(char)
+
+    return len(hashmap) <= 1
+
+
+# T: O(n) since we iterate through all character in string
+# S: O(n) due to hashmap
+
+
 if __name__ == "__main__":
     exit(
         generic_test.generic_test_main(
             "is_string_permutable_to_palindrome.py",
             "is_string_permutable_to_palindrome.tsv",
-            can_form_palindrome,
+            can_form_palindrome2,
         )
     )
